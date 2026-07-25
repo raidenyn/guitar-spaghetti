@@ -377,15 +377,18 @@ above the screen lets it enter from the top.
 1. Open res://scenes/main.tscn.
 2. Drag res://scenes/falling_thing.tscn from FileSystem into Main.
 3. Keep the new instance name FallingThing.
+4. In the Scene dock, move FallingThing so it is immediately after Background.
 
-**Observable gate — L05.S03.G01 instance tree:** What exact new direct child
-of Main is visible, and which source scene is it an instance of?
+**Observable gate — L05.S03.G01 instance tree:** Which direct child is
+immediately after Background in Main, and which source scene is it an instance
+of?
 
-**PASS:** The learner reports FallingThing (Area2D) as an instance of
-res://scenes/falling_thing.tscn; continue to L05.S03.G02. **RETRY:** Ask for
-the exact tree name and source path; do not continue yet. **DIAGNOSE:** If the
-scene was opened instead of instanced, or the instance is missing or under the
-wrong parent, make only that tree correction and repeat this gate.
+**PASS:** The learner reports FallingThing (Area2D), immediately after
+Background, as an instance of res://scenes/falling_thing.tscn; continue to
+L05.S03.G02. **RETRY:** Ask for the exact tree order and source path; do not
+continue yet. **DIAGNOSE:** If the scene was opened instead of instanced, or
+the instance is missing, under the wrong parent, or not immediately after
+Background, make only that tree correction and repeat this gate.
 
 ##### Action group L05.S03.G02 — Set the test position
 
