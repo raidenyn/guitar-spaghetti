@@ -13,19 +13,27 @@ Godot nodes already have useful built-in signals. For example, `SpawnDelay`
 sends `timeout`, an `Area2D` sends `area_entered`, and a button sends `pressed`.
 
 This game also defines custom signals when a game-specific event deserves a
-clear name:
+clear name. `MatchLine` owns `thing_crossed` and `color_switched`; `GameHUD`
+owns `play_again_requested`:
 
 ```gdscript
+# MatchLine
 signal thing_crossed(thing: FallingThing)
 signal color_switched
+
+# GameHUD
 signal play_again_requested
 ```
 
-The sender declares a custom signal with `signal`, then sends it with `.emit()`:
+Each owning node declares its custom signal with `signal`, then sends only its
+own signal with `.emit()`:
 
 ```gdscript
+# MatchLine
 thing_crossed.emit(thing)
 color_switched.emit()
+
+# GameHUD
 play_again_requested.emit()
 ```
 

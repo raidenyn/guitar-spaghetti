@@ -12,14 +12,16 @@ For the full Godot reference, see [InputEvent](https://docs.godotengine.org/en/4
 2. Choose the **Input Map** tab.
 3. In **Add New Action**, type the exact name `switch_line`, then choose
    **Add**.
-4. Find `switch_line` in the action list, use its add-event control, press the
-   physical Space key when Godot asks for the input, then confirm it.
+4. Find `switch_line` in the action list and use its add-event control. In the
+   event dialog, select or enable **Physical Keycode**, press Space, and
+   confirm the event.
 5. Close Project Settings and save the project when the lesson asks.
 
 The action must be spelled `switch_line`, with the underscore and lower-case
 letters. Its canonical binding is the physical Space key. See
 [`PROP-L04`](../facilitator-solutions/property-checkpoints.md#lesson-04-prop-l04)
-when comparing what is visible in Input Map.
+when comparing what is visible in Input Map: the event must visibly read
+**Physical Space**.
 
 ## Read the named action in code
 
