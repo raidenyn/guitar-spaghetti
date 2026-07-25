@@ -1401,3 +1401,13 @@ func _on_match_line_color_switched() -> void:
     if state == GameState.PLAYING:
         switch_sound.play()
 ```
+
+Required connections at this checkpoint:
+
+```text
+MatchLine.thing_crossed -> Main._on_match_line_thing_crossed
+MatchLine.color_switched -> Main._on_match_line_color_switched
+SpawnDelay.timeout -> Main._on_spawn_delay_timeout
+HUD.play_again_requested -> Main._on_hud_play_again_requested
+PlayAgainButton.pressed -> HUD._on_play_again_button_pressed
+```
