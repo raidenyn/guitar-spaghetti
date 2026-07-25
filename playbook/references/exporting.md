@@ -53,11 +53,16 @@ If Godot says templates are missing, collect the exact message and use
    project resources, including art and audio, remain available. Do not choose
    *Export PCK/ZIP* for this test: it contains project data but is not a
    playable build by itself.
-4. Select the new preset and give it an export path in the outside `exports/`
+4. For a **macOS** preset, set **Application → Bundle Identifier** to a valid,
+   unique identifier for this local test build, such as
+   `com.example.guitarandspaghetti` (adapt it with the learner's own unique
+   name if needed). This local identifier does not require an Apple Developer
+   account, signing certificate, or any Apple signing setup.
+5. Select the new preset and give it an export path in the outside `exports/`
    folder. Examples are `exports/GuitarAndSpaghetti.app` on macOS,
    `exports/GuitarAndSpaghetti.exe` on Windows, and
    `exports/GuitarAndSpaghetti.x86_64` on a typical 64-bit Linux computer.
-5. Choose **Export Project**, select **Debug**, and wait for the completed
+6. Choose **Export Project**, select **Debug**, and wait for the completed
    build. Record the exact path you selected.
 
 The preset records the build settings in the project. A future lesson can use
