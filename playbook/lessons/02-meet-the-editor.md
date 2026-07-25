@@ -175,7 +175,9 @@ warnings, and red errors after a run.
 
 Ask: “Where are the run and stop controls, where is Output, and where would
 you look first if a red error appeared?” **PASS** requires the child to identify
-the run controls, Output, and the first red Output message as the first clue.
+the run controls and Output, confirm they observed the blank game window, and
+confirm Output shows no red error; the first red Output message would be the
+first clue if one appeared.
 
 #### If it does not work
 
