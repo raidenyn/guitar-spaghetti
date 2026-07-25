@@ -1227,7 +1227,7 @@ Introduce integer `score`; on a resolved correct match increment once, update HU
 
 - [ ] **Step 4: Add temporary mismatch path**
 
-Print `Mismatch — game over comes next lesson`, remove the object, and start SpawnDelay without changing score. Label this code as intentionally temporary and identify its Lesson 10 replacement.
+Print `Mismatch, game over comes next lesson`, remove the object, and start SpawnDelay without changing score. Label this code as intentionally temporary and identify its Lesson 10 replacement.
 
 - [ ] **Step 5: Test the complete four-case matrix**
 

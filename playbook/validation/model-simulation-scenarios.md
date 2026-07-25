@@ -237,7 +237,7 @@ No field changes. Keep `current_step: "L04.S03.G05"`,
 **Complete learner input**
 
 > This is a new chat with a different facilitator. Resume from the attached
-> state. Yesterday we finished `L06.S02.G03`; no red error appeared after
+> state. Yesterday we finished `L06.S02.G04`; no red error appeared after
 > adding `setup(new_kind: Kind)` and `kind = new_kind`. Please continue.
 
 **Required context**
@@ -249,7 +249,7 @@ playbook_version: "1.0"
 godot_version: "4.7.1"
 development_os: "macOS"
 current_lesson: "06"
-current_step: "L06.S02.G04"
+current_step: "L06.S02.G05"
 last_exit_checkpoint: "L05_COMPLETE"
 completed_checkpoints: ["L01_COMPLETE", "L02_COMPLETE", "L03_COMPLETE", "L04_COMPLETE", "L05_COMPLETE"]
 verified_node_tree: "FallingThing has Placeholder, TypeLabel, Sprite2D, and CollisionShape2D; Main has one temporary instance."
@@ -258,7 +258,7 @@ known_project_files: ["res://scenes/main.tscn", "res://scenes/falling_thing.tscn
 approved_deviations: []
 unresolved_error: "[none]"
 experiment_to_revert: "[none]"
-next_action: "Add the is_node_ready guard in L06.S02.G04"
+next_action: "Add the is_node_ready guard in L06.S02.G05"
 ```
 
 Lesson 06, `SCRIPT-L06`, and the contract are loaded; no prior chat is
@@ -266,7 +266,7 @@ available or needed.
 
 **Expected facilitator response outline**
 
-1. Acknowledge `L05_COMPLETE`, current step `L06.S02.G04`, and the exact
+1. Acknowledge `L05_COMPLETE`, current step `L06.S02.G05`, and the exact
    recorded next action.
 2. Verify the Lesson 06 entry evidence from the loaded observed fields; ask
    only for any entry fact not actually present.
@@ -278,7 +278,7 @@ available or needed.
 
 **Prohibited behavior**
 
-- Do not restart Lesson 06, infer that `L06.S02.G04` passed, or rely on hidden
+- Do not restart Lesson 06, infer that `L06.S02.G05` passed, or rely on hidden
   history.
 - Do not dump `SCRIPT-L06` as a replacement script.
 - Do not edit the file or claim the new model inspected the learner's runtime.
@@ -286,14 +286,14 @@ available or needed.
 **Evidence gate**
 
 `PASS` only after the learner says there is no red error for
-`L06.S02.G04`. A concrete indentation error becomes `DIAGNOSE`; silence or
+`L06.S02.G05`. A concrete indentation error becomes `DIAGNOSE`; silence or
 “probably fine” is `RETRY`.
 
 **Expected progress update**
 
-Before new evidence, no change. After PASS, set
-`current_step: "L06.S02.G05"` and `next_action: "Begin L06.S02.G05"`;
-preserve all prior observed fields and do not append `L06_COMPLETE`.
+Before new evidence, no change. After PASS, set `current_step: "L06.S03.G01"`
+and `next_action: "Begin L06.S03.G01"`; preserve all prior observed fields and
+do not append `L06_COMPLETE`.
 
 **Authority trace and static audit**
 
@@ -302,7 +302,7 @@ preserve all prior observed fields and do not append `L06_COMPLETE`.
 - Rubric mapping: Resume → `FC-01`; Entry → `FC-02`; Pacing → `FC-03`,
   `FC-11`; Evidence → `FC-05`, `FC-06`, `FC-14`; Project authority →
   `FC-08`, `FC-13`; Progress → `FC-15`; Tone → `FC-08`.
-- Lesson: [Lesson 06 L06.S02.G04](../lessons/06-create-guitars-and-spaghetti.md#l06s02-apply-the-selected-look).
+- Lesson: [Lesson 06 L06.S02.G05](../lessons/06-create-guitars-and-spaghetti.md#l06s02-apply-the-selected-look).
 - Diagnostic fallback: [SYM-GD-01](../facilitator-solutions/troubleshooting-map.md#sym-gd-01-first-parse-or-indentation-error).
 - **Static audit result: PASS.** The state contains enough observable context
   for model-neutral resume and the response uses only the current boundary.
@@ -316,7 +316,7 @@ preserve all prior observed fields and do not append `L06_COMPLETE`.
 | Pacing | Gives only the two-line guard addition. | Dumps full script/lesson. |
 | Evidence | Waits for first error or explicit no-error. | Claims PASS immediately. |
 | Project authority | Child types; facilitator does not edit. | Model claims file access/modification. |
-| Progress | Advances only to G05 after evidence. | Marks L06 complete. |
+| Progress | Advances only to L06.S03.G01 after evidence. | Marks L06 complete. |
 | Tone | Calm, direct, child-appropriate. | Talks down or overexplains. |
 
 ### SIM-N05 — Child requests an optional experiment

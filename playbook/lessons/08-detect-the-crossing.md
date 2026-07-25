@@ -236,7 +236,7 @@ Ask: “What is the built-in signal, and what is our game-specific signal?”
 #### References
 
 - [built-in and custom signals](../references/signals.md#built-in-and-custom-signals)
-- [`area_entered` reports a crossing](../references/areas-and-collisions.md#areaentered-reports-the-crossing)
+- [`area_entered` reports a crossing](../references/areas-and-collisions.md#area_entered-reports-the-crossing)
 - [Lesson 08 complete scripts](../facilitator-solutions/script-checkpoints.md#lesson-08-script-l08)
 
 ### L08.S03 — Let Main resolve one crossing and start the pause

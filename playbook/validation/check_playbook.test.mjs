@@ -285,3 +285,24 @@ test("rejects an empty heading", async (t) => {
   await writeFixtureFile(root, "references/editor-map.md", "## \n");
   assert.ok((await issuesFor(root)).some((issue) => issue.code === "PLACEHOLDER"));
 });
+
+test("disambiguates repeated headings like GitHub before validating anchors", async (t) => {
+  const root = await makeFixture(t);
+  await writeFixtureFile(root, "references/editor-map.md", [
+    "## Editor map",
+    "## Repeat",
+    "## Repeat",
+    "## Repeat",
+    "",
+  ].join("\n"));
+
+  await replaceIn(root, "lessons/01-install-and-create.md",
+    "../references/editor-map.md#editor-map",
+    "../references/editor-map.md#repeat-2");
+  assert.deepEqual(await issuesFor(root), []);
+
+  await replaceIn(root, "lessons/01-install-and-create.md",
+    "../references/editor-map.md#repeat-2",
+    "../references/editor-map.md#repeat-3");
+  assert.ok((await issuesFor(root)).some((issue) => issue.code === "BROKEN_LINK"));
+});

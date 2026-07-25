@@ -253,29 +253,9 @@ copy its first line and line number; if no, state that there is no red error.
 **DIAGNOSE:** Compare only the reported line and the line above it with this
 group, correct one local spelling or indentation issue, and repeat this gate.
 
-##### Action group L05.S02.G05 — Start when ready
+##### Action group L05.S02.G05 — Define the start command
 
 Below falling, add this short code addition:
-
-~~~gdscript
-func _ready() -> void:
-    start_falling()
-~~~
-
-Save and check for the first red error.
-
-**Observable gate — L05.S02.G05 ready function:** Is there a red error? If
-yes, copy its first line and line number; if no, state that there is no red
-error.
-
-**PASS:** The learner observes no red error; continue to L05.S02.G06.
-**RETRY:** Ask for the first red line or an explicit no-red-error observation.
-**DIAGNOSE:** Check the function spelling and its four-space indentation,
-correct only that local issue, and repeat this gate.
-
-##### Action group L05.S02.G06 — Define the start command
-
-Below _ready(), add this short code addition:
 
 ~~~gdscript
 func start_falling() -> void:
@@ -284,55 +264,60 @@ func start_falling() -> void:
 
 Save and check for the first red error.
 
-**Observable gate — L05.S02.G06 start command:** Is there a red error? If yes,
+**Observable gate — L05.S02.G05 start command:** Is there a red error? If yes,
 copy its first line and line number; if no, state that there is no red error.
 
-**PASS:** The learner observes no red error; continue to L05.S02.G07.
+**PASS:** The learner observes no red error; continue to L05.S02.G06.
 **RETRY:** Ask for the first red line or an explicit no-red-error observation.
 **DIAGNOSE:** Compare the reported line with this two-line addition, correct
 only that local issue, and repeat this gate.
 
-##### Action group L05.S02.G07 — Add the process check
+##### Action group L05.S02.G06 — Start when ready
+
+Directly above func start_falling(), add this short code addition:
+
+~~~gdscript
+func _ready() -> void:
+    start_falling()
+~~~
+
+Save and check for the first red error.
+
+**Observable gate — L05.S02.G06 ready function:** Is there a red error? If
+yes, copy its first line and line number; if no, state that there is no red
+error.
+
+**PASS:** The learner observes no red error; continue to L05.S02.G07.
+**RETRY:** Ask for the first red line or an explicit no-red-error observation.
+**DIAGNOSE:** Check the function spelling and its four-space indentation,
+correct only that local issue, and repeat this gate.
+
+##### Action group L05.S02.G07 — Add the process check and movement
+
+delta means the tiny amount of time since the last frame. fall_speed * delta
+therefore means “move at the same pixels-per-second speed even when different
+computers draw different numbers of frames.” Godot rejects an if with no
+indented line below it, so add the complete block in one addition:
 
 Below start_falling(), add this short code addition:
 
 ~~~gdscript
 func _process(delta: float) -> void:
     if falling:
-~~~
-
-Save and check for the first red error.
-
-**Observable gate — L05.S02.G07 process check:** Is there a red error? If yes,
-copy its first line and line number; if no, state that there is no red error.
-
-**PASS:** The learner observes no red error; continue to L05.S02.G08.
-**RETRY:** Ask for the first red line or an explicit no-red-error observation.
-**DIAGNOSE:** If _process is misspelled or if falling: lacks its colon, correct
-only that local line and repeat this gate.
-
-##### Action group L05.S02.G08 — Move by elapsed time
-
-delta means the tiny amount of time since the last frame. fall_speed * delta
-therefore means “move at the same pixels-per-second speed even when different
-computers draw different numbers of frames.”
-
-Inside the indented if falling: block, add this one-line code addition:
-
-~~~gdscript
         position.y += fall_speed * delta
 ~~~
 
 Save and check for the first red error.
 
-**Observable gate — L05.S02.G08 movement line:** Is there a red error? If yes,
-copy its first line and line number; if no, state that there is no red error.
+**Observable gate — L05.S02.G07 process and movement:** Is there a red error?
+If yes, copy its first line and line number; if no, state that there is no red
+error.
 
 **PASS:** The learner observes no red error; save and continue to L05.S03.
 **RETRY:** Ask for the first red line or an explicit no-red-error observation.
-**DIAGNOSE:** If the line is not indented under if falling:, correct only its
-indentation. If position.y or _process is misspelled, compare that one line
-with the block above, correct it, and repeat this gate.
+**DIAGNOSE:** If _process is misspelled or if falling: lacks its colon, correct
+only that local line. If position.y is not indented under if falling:, correct
+only its indentation, then repeat this gate.
 
 #### Check your work
 

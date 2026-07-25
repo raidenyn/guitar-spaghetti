@@ -104,7 +104,7 @@ it?” **PASS** requires `switch_line` and **Physical Space**.
 
 #### References
 
-- [Create `switch_line` in Godot 4.7](../references/input-actions.md#create-switchline-in-godot-47)
+- [Create `switch_line` in Godot 4.7](../references/input-actions.md#create-switch_line-in-godot-47)
 - [Lesson 04 exact properties](../facilitator-solutions/property-checkpoints.md#lesson-04-prop-l04)
 
 ### L04.S02 — Give `MatchLine` a script
@@ -233,20 +233,20 @@ group, then use
 [`SYM-GD-01`](../facilitator-solutions/troubleshooting-map.md#sym-gd-01-first-parse-or-indentation-error)
 and repeat this gate.
 
-##### Action group L04.S02.G06 — Add the ready recipe
+##### Action group L04.S02.G06 — Add the color-apply recipe
 
 Below the `@onready` line, add this one short code addition:
 
 ```gdscript
 
-func _ready() -> void:
-    reset_to_blue()
+func _apply_color() -> void:
+    visual.color = BLUE_COLOR if current_color == LineColor.BLUE else RED_COLOR
 ```
 
 Save. Before running, check the first red error again.
 
-**Observable gate — `L04.S02.G06 ready code`:** What is the first red error,
-or does the script show no red error?
+**Observable gate — `L04.S02.G06 color-apply code`:** What is the first red
+error, or does the script show no red error?
 
 **PASS:** The learner observes no red error; continue to `L04.S03`.
 **RETRY:** Ask for the exact first red line or an explicit no-red-error
@@ -294,7 +294,7 @@ can be tested before later lessons introduce game states.
 
 ##### Action group L04.S03.G01 — Add the input recipe
 
-Below `_ready()`, add this function:
+Directly above `func _apply_color()`, add this function:
 
 ```gdscript
 
@@ -360,14 +360,14 @@ error, or does the script show no red error?
 observation. **DIAGNOSE:** Correct only the reported line, save, and repeat
 this same gate.
 
-##### Action group L04.S03.G04 — Add the color recipe
+##### Action group L04.S03.G04 — Add the ready recipe
 
-Below `set_input_enabled()`, add this one short code addition:
+Directly above `func _unhandled_input()`, add this one short code addition:
 
 ```gdscript
 
-func _apply_color() -> void:
-    visual.color = BLUE_COLOR if current_color == LineColor.BLUE else RED_COLOR
+func _ready() -> void:
+    reset_to_blue()
 ```
 
 Save, then check the first red error before running. If there is no red error,
@@ -388,7 +388,7 @@ line, save, and rerun this same gate.
 3. Press and release Space a second time; observe the line return to blue
    `#2684ff`.
 
-**Observable gate — `L04.S03.G03 two presses`:** In order, what color was the
+**Observable gate — `L04.S03.G05 two presses`:** In order, what color was the
 line at the start, after the first Space press, and after the second Space
 press?
 

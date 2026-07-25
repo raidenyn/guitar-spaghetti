@@ -102,8 +102,26 @@ function anchorFor(heading) {
   return heading
     .trim()
     .toLowerCase()
-    .replace(/[^\p{L}\p{N}\s-]/gu, "")
+    .replace(/[^\p{L}\p{N}\s_-]/gu, "")
     .replace(/\s+/g, "-");
+}
+
+/**
+ * GitHub disambiguates repeated headings by appending -1, -2, ... in document
+ * order. A plain Set of anchorFor(text) would collapse every "Actions" or
+ * "Check your work" heading in a lesson into one slug, certifying links that
+ * GitHub actually resolves to the first occurrence only (or not at all).
+ */
+function anchorsIn(content) {
+  const seenCounts = new Map();
+  const anchors = [];
+  for (const { text } of headingsIn(content)) {
+    const base = anchorFor(text);
+    const priorCount = seenCounts.get(base) ?? 0;
+    seenCounts.set(base, priorCount + 1);
+    anchors.push(priorCount === 0 ? base : `${base}-${priorCount}`);
+  }
+  return anchors;
 }
 
 function progressMarkerIsBracketed(content, markerIndex, marker) {
@@ -224,7 +242,7 @@ async function validateLinks(root, sourcePath, content, issues) {
     if (!fragment) continue;
 
     const targetContent = await readFile(targetPath, "utf8");
-    const anchors = new Set(headingsIn(targetContent).map(({ text }) => anchorFor(text)));
+    const anchors = new Set(anchorsIn(targetContent));
     if (!anchors.has(fragment.toLowerCase())) {
       issues.push(issue("BROKEN_LINK", source, `Link anchor does not exist: ${target}`));
     }
@@ -314,5 +332,9 @@ export async function validatePlaybook(rootDir) {
 if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1])).href) {
   const issues = await validatePlaybook(process.argv[2] ?? ".");
   for (const foundIssue of issues) console.error(`${foundIssue.code} ${foundIssue.path}: ${foundIssue.message}`);
-  if (issues.length > 0) process.exitCode = 1;
+  if (issues.length > 0) {
+    process.exitCode = 1;
+  } else {
+    console.log("Playbook validation passed");
+  }
 }

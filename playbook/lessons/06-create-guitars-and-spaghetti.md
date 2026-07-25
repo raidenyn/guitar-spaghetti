@@ -185,69 +185,7 @@ error.
 $TypeLabel with the visible Scene tree. Correct that one exact path or node
 name, then repeat this gate.
 
-##### Action group L06.S02.G02 — Apply before falling starts
-
-Inside func _ready() -> void:, directly above the existing anchor
-start_falling(), add this one-line code addition:
-
-~~~gdscript
-    _apply_placeholder()
-~~~
-
-Save and check for the first red error.
-
-**Observable gate — L06.S02.G02 ready order:** Is there a red error? If yes,
-copy its first line and line number; if no, state that there is no red error.
-
-**PASS:** The learner observes no red error; continue to L06.S02.G03.
-**RETRY:** Request the first red line or an explicit no-red-error observation.
-**DIAGNOSE:** If the line is outside _ready() or lacks its four spaces, move or
-indent only that line, leaving start_falling() directly below it, then repeat
-this gate.
-
-##### Action group L06.S02.G03 — Save the new Kind
-
-Below the complete _ready() function, add this one code group exactly:
-
-~~~gdscript
-
-func setup(new_kind: Kind) -> void:
-    kind = new_kind
-~~~
-
-Save and check for the first red error.
-
-**Observable gate — L06.S02.G03 save Kind:** Is there a red error? If yes,
-copy its first line and line number; if no, state that there is no red error.
-
-**PASS:** The learner observes no red error; continue to L06.S02.G04.
-**RETRY:** Request the first red line or an explicit no-red-error observation.
-**DIAGNOSE:** Compare only the function header and the indented
-kind = new_kind line with SCRIPT-L06. The assignment has four spaces. Correct
-only the differing line, then repeat this gate.
-
-##### Action group L06.S02.G04 — Apply the new look when ready
-
-Inside the setup(new_kind: Kind) function, directly below the anchor
-kind = new_kind, add this one code group exactly:
-
-~~~gdscript
-    if is_node_ready():
-        _apply_placeholder()
-~~~
-
-Save and check for the first red error.
-
-**Observable gate — L06.S02.G04 ready guard:** Is there a red error? If yes,
-copy its first line and line number; if no, state that there is no red error.
-
-**PASS:** The learner observes no red error; continue to L06.S02.G05.
-**RETRY:** Request the first red line or an explicit no-red-error observation.
-**DIAGNOSE:** If the error mentions indentation, compare the if line and the
-line beneath it only. The kind = new_kind line has four spaces and the
-_apply_placeholder() line has eight. Then repeat this gate.
-
-##### Action group L06.S02.G05 — Turn Kind into a color and word
+##### Action group L06.S02.G02 — Turn Kind into a color and word
 
 Below the complete _process(delta: float) function, add this one code group
 exactly:
@@ -261,14 +199,76 @@ func _apply_placeholder() -> void:
 
 Save and check for the first red error.
 
-**Observable gate — L06.S02.G05 visual recipe:** Is there a red error? If yes,
+**Observable gate — L06.S02.G02 visual recipe:** Is there a red error? If yes,
 copy its first line and line number; if no, state that there is no red error.
 
-**PASS:** The learner observes no red error; continue to L06.S03.
+**PASS:** The learner observes no red error; continue to L06.S02.G03.
 **RETRY:** Request the first red line or an explicit no-red-error observation.
 **DIAGNOSE:** Compare only the reported line with SCRIPT-L06. Keep
 Kind.GUITAR unquoted and keep the visible words "GUITAR" and "SPAGHETTI"
 quoted; correct only the differing line, then repeat this gate.
+
+##### Action group L06.S02.G03 — Apply before falling starts
+
+Inside func _ready() -> void:, directly above the existing anchor
+start_falling(), add this one-line code addition:
+
+~~~gdscript
+    _apply_placeholder()
+~~~
+
+Save and check for the first red error.
+
+**Observable gate — L06.S02.G03 ready order:** Is there a red error? If yes,
+copy its first line and line number; if no, state that there is no red error.
+
+**PASS:** The learner observes no red error; continue to L06.S02.G04.
+**RETRY:** Request the first red line or an explicit no-red-error observation.
+**DIAGNOSE:** If the line is outside _ready() or lacks its four spaces, move or
+indent only that line, leaving start_falling() directly below it, then repeat
+this gate.
+
+##### Action group L06.S02.G04 — Save the new Kind
+
+Below the complete _ready() function, add this one code group exactly:
+
+~~~gdscript
+
+func setup(new_kind: Kind) -> void:
+    kind = new_kind
+~~~
+
+Save and check for the first red error.
+
+**Observable gate — L06.S02.G04 save Kind:** Is there a red error? If yes,
+copy its first line and line number; if no, state that there is no red error.
+
+**PASS:** The learner observes no red error; continue to L06.S02.G05.
+**RETRY:** Request the first red line or an explicit no-red-error observation.
+**DIAGNOSE:** Compare only the function header and the indented
+kind = new_kind line with SCRIPT-L06. The assignment has four spaces. Correct
+only the differing line, then repeat this gate.
+
+##### Action group L06.S02.G05 — Apply the new look when ready
+
+Inside the setup(new_kind: Kind) function, directly below the anchor
+kind = new_kind, add this one code group exactly:
+
+~~~gdscript
+    if is_node_ready():
+        _apply_placeholder()
+~~~
+
+Save and check for the first red error.
+
+**Observable gate — L06.S02.G05 ready guard:** Is there a red error? If yes,
+copy its first line and line number; if no, state that there is no red error.
+
+**PASS:** The learner observes no red error; continue to L06.S03.
+**RETRY:** Request the first red line or an explicit no-red-error observation.
+**DIAGNOSE:** If the error mentions indentation, compare the if line and the
+line beneath it only. The kind = new_kind line has four spaces and the
+_apply_placeholder() line has eight. Then repeat this gate.
 
 #### Check your work
 

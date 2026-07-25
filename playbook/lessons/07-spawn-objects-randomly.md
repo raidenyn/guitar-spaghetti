@@ -489,20 +489,29 @@ to collect clearer evidence, not a code error by itself.
 
 ##### Action group L07.S04.G01 — Inspect one generated object
 
-1. Run the project and, while the object is still visible, switch to Godot's
-   **Remote** Scene tree; first note its visible word, GUITAR or SPAGHETTI.
-2. Open Main, then FallingThings, and select its one FallingThing child.
-3. Read its position x and y in the Inspector, then stop the run.
+1. Run the project and watch the object visibly begin above the playfield's
+   top edge; it is already falling by the time anyone can switch windows, so
+   this first glance is the only reliable moment to see it start off-screen.
+2. Once it is falling, switch to Godot's **Remote** Scene tree; note its
+   visible word, GUITAR or SPAGHETTI.
+3. Open Main, then FallingThings, and select its one FallingThing child.
+4. Read its position x in the Inspector, then stop the run. Its y position
+   keeps changing while falling, so it is not exact evidence here; the exact
+   spawn value is the `SPAWN_Y := -40.0` constant already confirmed in
+   `L07.S03.G03`.
 
 **Observable gate — L07.S04.G01 one generated object:** What visible word
-appeared, what exact x and y position did you see, and how many FallingThing
-children were inside FallingThings?
+appeared, did you see it begin above the playfield's top edge, what exact x
+position did you see, and how many FallingThing children were inside
+FallingThings?
 
-**PASS:** The learner reports one child, y `-40`, and x from `60.0` through
-`420.0`; continue to L07.S04.G02. **RETRY:** Request the missing Kind,
-position, or child count. **DIAGNOSE:** If the child is under Main or there are
-two children, return to the matching L07.S01 or L07.S03 gate. If x or y is out
-of range, return only to L07.S03.G09. Do not add a timer loop to compensate.
+**PASS:** The learner reports one child, a visible start above the top edge,
+and x from `60.0` through `420.0`; continue to L07.S04.G02. **RETRY:** Request
+the missing Kind, entrance observation, position, or child count.
+**DIAGNOSE:** If the child is under Main or there are two children, return to
+the matching L07.S01 or L07.S03 gate. If x is out of range, return only to
+L07.S03.G09. If it never appears above the top edge, confirm `SPAWN_Y := -40.0`
+still matches `L07.S03.G03` exactly. Do not add a timer loop to compensate.
 
 ##### Action group L07.S04.G02 — Collect five fresh-run observations
 

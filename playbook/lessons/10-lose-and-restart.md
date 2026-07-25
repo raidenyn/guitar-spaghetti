@@ -39,7 +39,7 @@ Ask the learner to show or state all of these facts:
    `ScoreLabel`.
 2. A fresh run visibly begins at `Score: 0`; blue + GUITAR and red +
    SPAGHETTI each add exactly one, while the other two pairs leave the score
-   unchanged and print `Mismatch — game over comes next lesson`.
+   unchanged and print `Mismatch, game over comes next lesson`.
 3. The Node dock shows exactly `MatchLine.thing_crossed` to
    `Main._on_match_line_thing_crossed` and `SpawnDelay.timeout` to
    `Main._on_spawn_delay_timeout`.
@@ -523,11 +523,20 @@ error.
 
 ##### Action group L10.S03.G09 — Replace only the temporary mismatch branch
 
-In Main's crossing callback, replace only the current `else` branch and delete
-the `spawn_delay.start()` directly below the whole branch. Keep the correct
-match branch unchanged. The callback ending must now be:
+In Main's crossing callback, `spawn_delay.start()` currently sits below the
+whole `if`/`else`, where the mismatch branch you are about to remove would
+have reached it too. Move that one line so it is the last line inside the `if`
+branch, directly below `thing.resolve_success()`. Then replace only the
+current `else` branch. Keep the correct match branch's lines, including the
+`spawn_delay.start()` you just moved, otherwise unchanged. The callback ending
+must now be:
 
 ~~~gdscript
+    if match_line.matches(thing.kind):
+        score += 1
+        hud.set_score(score)
+        thing.resolve_success()
+        spawn_delay.start()
     else:
         await _finish_game(thing)
 ~~~
@@ -541,9 +550,12 @@ no red error.
 **PASS:** The learner observes no red error; continue to `L10.S03.G10`.
 **RETRY:** Request the first red line or an explicit no-red-error observation.
 **DIAGNOSE:** If the panel appears before the object finishes, make sure only
-`await thing.explode()` is directly above `hud.show_game_over(score)`. If an
-object appears after loss, inspect only `state = GameState.GAME_OVER`,
-`spawn_delay.stop()`, and the `_spawn_thing` guard.
+`await thing.explode()` is directly above `hud.show_game_over(score)`. If a
+correct match no longer spawns a next object, confirm `spawn_delay.start()` is
+the last line inside the `if` branch, not deleted or left below the whole
+`if`/`else`. If an object appears after loss, inspect only
+`state = GameState.GAME_OVER`, `spawn_delay.stop()`, and the `_spawn_thing`
+guard.
 
 ##### Action group L10.S03.G10 — Give Main its restart callback
 

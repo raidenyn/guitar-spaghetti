@@ -302,7 +302,42 @@ game-over behavior.
 
 #### Actions
 
-##### Action group L09.S03.G01 — Replace only the old removal line
+##### Action group L09.S03.G01 — Teach the FallingThing its resolution recipes
+
+Main is about to call two small recipes that do not exist yet. In
+`res://scripts/falling_thing.gd`, directly below `start_falling()`, add this
+short code addition:
+
+~~~gdscript
+
+func stop_falling() -> void:
+    falling = false
+~~~
+
+Then, directly below `_process(delta: float)`, add this second short code
+addition:
+
+~~~gdscript
+
+func resolve_success() -> void:
+    resolved = true
+    stop_falling()
+    queue_free()
+~~~
+
+Save and check for the first red error.
+
+**Observable gate — `L09.S03.G01 resolution recipes`:** Is there a red error?
+If yes, copy its first line and line number; if no, state that there is no red
+error.
+
+**PASS:** The learner observes no red error; continue to `L09.S03.G02`.
+**RETRY:** Request the first red line or an explicit no-red-error observation.
+**DIAGNOSE:** If either function is misplaced outside `FallingThing`'s other
+functions or misspelled, compare only the reported line with `SCRIPT-L09`,
+then repeat this gate.
+
+##### Action group L09.S03.G02 — Replace only the old removal line
 
 In `_on_match_line_thing_crossed(thing: FallingThing)`, replace this one old
 line:
@@ -319,24 +354,24 @@ with this exact branch. Keep `spawn_delay.start()` directly below the branch.
         hud.set_score(score)
         thing.resolve_success()
     else:
-        print("Mismatch — game over comes next lesson")
+        print("Mismatch, game over comes next lesson")
         thing.stop_falling()
         thing.queue_free()
 ~~~
 
 Save and check for the first red error.
 
-**Observable gate — `L09.S03.G01 score branch`:** Is there a red error? If
+**Observable gate — `L09.S03.G02 score branch`:** Is there a red error? If
 yes, copy its first line and line number; if no, state that there is no red
 error.
 
-**PASS:** The learner observes no red error; continue to `L09.S03.G02`.
+**PASS:** The learner observes no red error; continue to `L09.S03.G03`.
 **RETRY:** Request the first red line or an explicit no-red-error observation.
 **DIAGNOSE:** If `spawn_delay.start()` ended up inside only one branch, move
 only that line back left so it is below the whole `if`/`else`. If the score
 line is outside the `if`, indent only the correct-match lines by four spaces.
 
-##### Action group L09.S03.G02 — Confirm the safe order before running
+##### Action group L09.S03.G03 — Confirm the safe order before running
 
 Read the complete crossing callback from top to bottom and point to these
 events in order:
@@ -345,7 +380,7 @@ events in order:
 2. one of the two score-result branches;
 3. `spawn_delay.start()` after either branch.
 
-**Observable gate — `L09.S03.G02 callback order`:** What exact line prevents
+**Observable gate — `L09.S03.G03 callback order`:** What exact line prevents
 the same object from changing score twice, and which line starts the next
 object's delay for both results?
 
@@ -428,7 +463,7 @@ before -> after`.
 
 **PASS:** Blue + GUITAR and red + SPAGHETTI each increase their recorded score
 by exactly `1`; blue + SPAGHETTI and red + GUITAR keep the recorded score
-unchanged and each show `Mismatch — game over comes next lesson`. Every row
+unchanged and each show `Mismatch, game over comes next lesson`. Every row
 also shows one object disappearance, a roughly `0.5`-second pause, one next
 object, and no red Output error. Continue to the lesson checkpoint.
 **RETRY:** Request the one row missing its before/after values or mismatch
@@ -479,7 +514,7 @@ Before recording L09_COMPLETE, require this observable evidence:
 4. The learner supplied observed before/after score evidence for all four
    color-and-kind rows. Blue + GUITAR and red + SPAGHETTI increased by exactly
    one; blue + SPAGHETTI and red + GUITAR stayed unchanged and printed exactly
-   `Mismatch — game over comes next lesson`.
+   `Mismatch, game over comes next lesson`.
 5. Every observed row removed one object, waited about `0.5` seconds, showed
    exactly one next object, and had no red Output error.
 

@@ -639,7 +639,7 @@ func _on_match_line_thing_crossed(thing: FallingThing) -> void:
         hud.set_score(score)
         thing.resolve_success()
     else:
-        print("Mismatch — game over comes next lesson")
+        print("Mismatch, game over comes next lesson")
         thing.stop_falling()
         thing.queue_free()
     spawn_delay.start()
