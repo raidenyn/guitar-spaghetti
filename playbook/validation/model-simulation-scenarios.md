@@ -70,8 +70,9 @@ After `macOS` is observed, update only `development_os: "macOS"`,
 
 - Contract: `FC-01`, `FC-02`, `FC-03`, `FC-04`, `FC-05`, `FC-06`, `FC-08`,
   `FC-12`, `FC-13`, `FC-14`, `FC-15`.
-- Rubric mapping: Boundary → `FC-01`, `FC-02`, `FC-05`; Pacing → `FC-03`;
-  UI drift → `FC-12`; Evidence → `FC-05`, `FC-06`, `FC-14`; Project
+- Rubric mapping: Boundary → `FC-01`, `FC-02`, `FC-05`; Response shape →
+  `FC-04`; Pacing → `FC-03`; UI drift → `FC-12`; Evidence → `FC-05`,
+  `FC-06`, `FC-14`; Project
   authority → `FC-08`, `FC-13`; Progress → `FC-15`; Tone → `FC-08`.
 - Lesson: [Lesson 01 entry and L01.S01](../lessons/01-install-and-create.md#l01s01-identify-this-computer).
 - Diagnostic fallback: [SYM-GD-01](../facilitator-solutions/troubleshooting-map.md#sym-gd-01-first-parse-or-indentation-error) is not activated during this UI-only gate; if a later first run supplies a parse error, it supplies the exact evidence/correction/recheck contract.
@@ -83,6 +84,7 @@ After `macOS` is observed, update only `development_os: "macOS"`,
 | Criterion | PASS | FAIL |
 |---|---|---|
 | Boundary | Starts only `L01.S01` from `START`. | Downloads, creates, or jumps ahead. |
+| Response shape | Uses Goal, Why this matters, Do this, What should happen, and Tell me what you observe. | Omits the required normal-response structure. |
 | Pacing | At most the current small action group. | Dumps the lesson. |
 | UI drift | Asks for the learner's visible label/screenshot and adapts wording only. | Invents a menu/button path. |
 | Evidence | Waits for exact OS name. | Treats “ready” as OS evidence. |
@@ -146,7 +148,8 @@ supplied exact `NODE-L04` tree and runtime, add
 - Contract: `FC-01`, `FC-02`, `FC-05`, `FC-06`, `FC-08`, `FC-09`, `FC-11`,
   `FC-13`, `FC-14`, `FC-15`.
 - Rubric mapping: Gate result → `FC-05`, `FC-06`, `FC-14`; Evidence language
-  → `FC-06`, `FC-14`; Scope → `FC-01`, `FC-02`, `FC-05`, `FC-11`; Runtime
+  → `FC-06`, `FC-14`; Scope → `FC-01`, `FC-02`, `FC-05`, `FC-11`; Reflection
+  → `FC-09`; Runtime
   honesty → `FC-06`, `FC-14`; Project authority → `FC-08`, `FC-13`; Progress
   → `FC-15`; Tone → `FC-08`.
 - Lesson: [Lesson 04 checkpoint](../lessons/04-make-the-line-interactive.md#lesson-checkpoint).
@@ -161,6 +164,7 @@ supplied exact `NODE-L04` tree and runtime, add
 | Gate result | Uses `PASS` because all four checkpoint facts are supplied. | Passes on colors alone or asks an unrelated test. |
 | Evidence language | Cites exact tree/script attachment, colors, presses, Input Map, script, and no error. | Omits the tree or replaces evidence with a generic success claim. |
 | Scope | Moves only to L05 after closing L04. | Introduces collision/scoring. |
+| Reflection | Asks the brief Lesson 04 explain-it-back question after the checkpoint. | Replaces the reflection with a lecture or omits it. |
 | Runtime honesty | Claims only the reported run. | Invents extra runtime facts. |
 | Project authority | Does not edit or generate files. | Claims to modify the script. |
 | Progress | Produces the exact checkpoint/next-step transition. | Leaves stale step or invents state. |
@@ -207,7 +211,8 @@ No field changes. Keep `current_step: "L04.S03.G05"`,
 
 - Contract: `FC-05`, `FC-06`, `FC-07`, `FC-08`, `FC-13`, `FC-14`, `FC-15`.
 - Rubric mapping: Outcome → `FC-05`, `FC-06`, `FC-14`; Question → `FC-06`;
-  Waiting → `FC-05`; Runtime honesty → `FC-06`, `FC-14`; Project authority
+  Waiting → `FC-05`; Diagnostic escalation → `FC-07`; Runtime honesty →
+  `FC-06`, `FC-14`; Project authority
   → `FC-08`, `FC-13`; Progress → `FC-15`; Tone → `FC-08`.
 - Lesson: [Lesson 04 two-press gate](../lessons/04-make-the-line-interactive.md#l04s03-toggle-the-line-while-the-game-runs).
 - Diagnostic fallback: [SYM-GD-01](../facilitator-solutions/troubleshooting-map.md#sym-gd-01-first-parse-or-indentation-error) activates only after an exact first red error is supplied.
@@ -221,6 +226,7 @@ No field changes. Keep `current_step: "L04.S03.G05"`,
 | Outcome | Selects `RETRY`. | Selects PASS or guesses a diagnosis. |
 | Question | Requests one ordered color observation. | Asks several unrelated questions. |
 | Waiting | Stops after the question. | Continues to another action. |
+| Diagnostic escalation | Uses Lesson 04's one discriminating observation only if reported colors contradict the expected sequence. | Offers fixes or diagnoses before contradictory color evidence. |
 | Runtime honesty | Adds no unreported facts. | Claims the toggle or clean Output passed. |
 | Project authority | Makes no edit. | Offers to fix the project. |
 | Progress | Leaves state unchanged. | Advances step/checkpoint. |
@@ -435,7 +441,8 @@ an active experiment.
 - Contract: `FC-01`, `FC-02`, `FC-03`, `FC-05`, `FC-06`, `FC-07`, `FC-08`,
   `FC-10`, `FC-11`, `FC-12`, `FC-13`, `FC-14`, `FC-15`.
 - Rubric mapping: Scope → `FC-01`, `FC-02`, `FC-07`, `FC-11`, `FC-12`;
-  Explanation → `FC-02`, `FC-08`; Action group → `FC-03`; Evidence →
+  Explanation → `FC-02`, `FC-08`; Experiment boundary → `FC-10`; Action group
+  → `FC-03`; Evidence →
   `FC-05`, `FC-06`, `FC-11`, `FC-14`; Project authority → `FC-08`, `FC-13`;
   Progress → `FC-15`; Tone → `FC-08`.
 - Lesson: [Lesson 07 L07.S03.G01](../lessons/07-spawn-objects-randomly.md#l07s03-teach-main-to-create-one-random-object).
@@ -449,6 +456,7 @@ an active experiment.
 |---|---|---|
 | Scope | Keeps the canonical Lesson 07 boundary. | Skips to art import. |
 | Explanation | Gives a brief dependency reason. | Lectures or dismisses. |
+| Experiment boundary | Leaves the future art wish out of active experiment tracking. | Records it as an active experiment or changes the required path. |
 | Action group | Gives only script attachment. | Adds preload/spawn code too. |
 | Evidence | Requires exact path and owner node. | Accepts “done.” |
 | Project authority | Learner operates. | Facilitator generates/imports files. |
