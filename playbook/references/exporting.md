@@ -54,10 +54,12 @@ If Godot says templates are missing, collect the exact message and use
    *Export PCK/ZIP* for this test: it contains project data but is not a
    playable build by itself.
 4. For a **macOS** preset, set **Application → Bundle Identifier** to a valid,
-   unique identifier for this local test build, such as
-   `com.example.guitarandspaghetti` (adapt it with the learner's own unique
-   name if needed). This local identifier does not require an Apple Developer
-   account, signing certificate, or any Apple signing setup.
+   learner-specific, lowercase reverse-DNS identifier, such as
+   `com.lee.guitarandspaghetti`. Replace `lee` with the learner's own first
+   name or family name, normalized to lowercase letters, hyphens, or periods,
+   so their identifier is unique—for example,
+   `com.smith-jones.guitarandspaghetti`. This debug test build does not require
+   an Apple Developer account, signing certificate, or signed export.
 5. Select the new preset and give it an export path in the outside `exports/`
    folder. Examples are `exports/GuitarAndSpaghetti.app` on macOS,
    `exports/GuitarAndSpaghetti.exe` on Windows, and
