@@ -475,15 +475,22 @@ last FileSystem path, preview, script error, visible art result, or game-matrix
 observation. If it has passed, record L11_COMPLETE, set `next_action` to Begin
 L12.S01, and use this handoff format:
 
-~~~text
-SESSION_HANDOFF
-checkpoint: L11_COMPLETE
-next_action: Begin L12.S01
-observed: res://art/guitar.png and res://art/spaghetti.png appeared with the intended previews
-observed: both art kinds were recognisable and unstretched, with Sprite2D visible and placeholders hidden
-observed: both score pairs and both mismatch pairs kept their Lesson 10 behavior; restart left one FallingThings child
-experiment_to_revert: none
-~~~
+```SESSION_HANDOFF
+playbook_version: "1.0"
+godot_version: "4.7.1"
+development_os: "[macOS, Windows, or Linux observed]"
+current_lesson: "12"
+current_step: "L12.S01"
+last_exit_checkpoint: "L11_COMPLETE"
+completed_checkpoints: ["L01_COMPLETE", "L02_COMPLETE", "L03_COMPLETE", "L04_COMPLETE", "L05_COMPLETE", "L06_COMPLETE", "L07_COMPLETE", "L08_COMPLETE", "L09_COMPLETE", "L10_COMPLETE", "L11_COMPLETE"]
+verified_node_tree: "Main and FallingThing match NODE-L11; FallingThing keeps Placeholder, TypeLabel, Sprite2D, and CollisionShape2D, with Sprite2D visible and Placeholder and TypeLabel hidden during play."
+verified_runtime_behavior: "Both kinds appeared as recognisable, unstretched child-made artwork; both scoring pairs and both mismatch pairs kept their Lesson 10 behavior, and one Play Again left exactly one FallingThings child."
+known_project_files: ["res://scenes/main.tscn", "res://scenes/falling_thing.tscn", "res://scripts/match_line.gd", "res://scripts/falling_thing.gd", "res://scripts/main.gd", "res://scripts/hud.gd", "res://art/guitar.png", "res://art/spaghetti.png"]
+approved_deviations: []
+unresolved_error: "[none]"
+experiment_to_revert: "[none]"
+next_action: "Begin L12.S01"
+```
 
 Do not claim the files imported, art shape was preserved, placeholders were
 hidden, or the game matrix stayed unchanged unless the learner supplied those

@@ -1,6 +1,9 @@
 # Lesson 13 — Test and Export
 
-- **Time:** 45–60 minutes
+- **Time:** 35–45 minutes
+- **Pacing:** If the lesson checkpoint is not reached by 45 minutes, stop at
+  the current evidence gate, save the observed handoff below, and resume from
+  that gate next session.
 - **Entry checkpoint:** L12_COMPLETE
 - **Exit checkpoint:** L13_COMPLETE
 - **Lesson steps:** L13.S01 through L13.S04
@@ -529,15 +532,22 @@ keep current L13.S##.G## gate as next_action and record the specific table row,
 first red error, export message, launch warning, or editor/export difference.
 If it has passed, record L13_COMPLETE and use this handoff format:
 
-~~~text
-SESSION_HANDOFF
-checkpoint: L13_COMPLETE
-next_action: Playbook complete — begin an optional new project only
-observed: all final editor acceptance rows have learner-observed PASS evidence
-observed: matching 4.7.1 desktop debug export ran outside Godot
-observed: four mapping cases, locked loss, restart, art, and audio matched editor evidence
-experiment_to_revert: none
-~~~
+```SESSION_HANDOFF
+playbook_version: "1.0"
+godot_version: "4.7.1"
+development_os: "[macOS, Windows, or Linux observed]"
+current_lesson: "13"
+current_step: "[none — playbook complete]"
+last_exit_checkpoint: "L13_COMPLETE"
+completed_checkpoints: ["L01_COMPLETE", "L02_COMPLETE", "L03_COMPLETE", "L04_COMPLETE", "L05_COMPLETE", "L06_COMPLETE", "L07_COMPLETE", "L08_COMPLETE", "L09_COMPLETE", "L10_COMPLETE", "L11_COMPLETE", "L12_COMPLETE", "L13_COMPLETE"]
+verified_node_tree: "The saved Main and FallingThing trees match NODE-L13, final values match PROP-L13, and all five required signal connections are visible."
+verified_runtime_behavior: "Every final editor acceptance row has learner-observed PASS evidence, and a matching Godot 4.7.1 desktop debug export ran outside Godot with both winning mappings, both mismatch mappings, locked loss, restart, art, and audio matching the editor."
+known_project_files: ["res://scenes/main.tscn", "res://scenes/falling_thing.tscn", "res://scripts/match_line.gd", "res://scripts/falling_thing.gd", "res://scripts/main.gd", "res://scripts/hud.gd", "res://art/guitar.png", "res://art/spaghetti.png", "res://audio/SOURCES.md"]
+approved_deviations: []
+unresolved_error: "[none]"
+experiment_to_revert: "[none]"
+next_action: "Playbook complete — begin an optional new project only"
+```
 
 Do not claim final completion without learner's own editor and exported
 observations for every listed case.

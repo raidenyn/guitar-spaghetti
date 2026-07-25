@@ -598,14 +598,22 @@ observed tree, Inspector value, script-error, or run result. If it has passed,
 record L07_COMPLETE, set `next_action` to Begin L08.S01, and use this handoff
 format:
 
-~~~text
-SESSION_HANDOFF
-checkpoint: L07_COMPLETE
-next_action: Begin L08.S01
-observed: Main generated exactly one FallingThing under FallingThings at x 60.0 through 420.0 and y -40.0
-observed: fresh runs showed both GUITAR blue #3b82f6 and SPAGHETTI red #ef4444
-experiment_to_revert: none
-~~~
+```SESSION_HANDOFF
+playbook_version: "1.0"
+godot_version: "4.7.1"
+development_os: "[macOS, Windows, or Linux observed]"
+current_lesson: "08"
+current_step: "L08.S01"
+last_exit_checkpoint: "L07_COMPLETE"
+completed_checkpoints: ["L01_COMPLETE", "L02_COMPLETE", "L03_COMPLETE", "L04_COMPLETE", "L05_COMPLETE", "L06_COMPLETE", "L07_COMPLETE"]
+verified_node_tree: "Main (Node2D) has Background, FallingThings, MatchLine (Visual and CollisionShape2D), SpawnDelay, and HUD (ScoreLabel), with no manual FallingThing instance; the reusable FallingThing tree still has its four canonical children."
+verified_runtime_behavior: "Fresh runs each showed exactly one generated FallingThing under FallingThings at y -40.0 and x 60.0 through 420.0; the observed runs included blue GUITAR and red SPAGHETTI, with no red Output error."
+known_project_files: ["res://scenes/main.tscn", "res://scenes/falling_thing.tscn", "res://scripts/match_line.gd", "res://scripts/falling_thing.gd", "res://scripts/main.gd"]
+approved_deviations: []
+unresolved_error: "[none]"
+experiment_to_revert: "[none]"
+next_action: "Begin L08.S01"
+```
 
 Do not claim the random-kind observations, the safe range, or the complete
 script comparison unless the learner supplied that evidence.

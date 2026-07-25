@@ -528,14 +528,22 @@ observed tree, Inspector value, connection, script error, or cycle result. If
 it has passed, record L08_COMPLETE, set `next_action` to Begin L09.S01, and
 use this handoff format:
 
-~~~text
-SESSION_HANDOFF
-checkpoint: L08_COMPLETE
-next_action: Begin L09.S01
-observed: FallingThing layer/mask 1/0 and MatchLine layer/mask 2/1 with enabled canonical rectangles
-observed: three cycles each removed one crossing object, paused about 0.5 seconds, then spawned one next object
-experiment_to_revert: none
-~~~
+```SESSION_HANDOFF
+playbook_version: "1.0"
+godot_version: "4.7.1"
+development_os: "[macOS, Windows, or Linux observed]"
+current_lesson: "09"
+current_step: "L09.S01"
+last_exit_checkpoint: "L08_COMPLETE"
+completed_checkpoints: ["L01_COMPLETE", "L02_COMPLETE", "L03_COMPLETE", "L04_COMPLETE", "L05_COMPLETE", "L06_COMPLETE", "L07_COMPLETE", "L08_COMPLETE"]
+verified_node_tree: "Main and FallingThing still match NODE-L08; FallingThing has enabled layer/mask 1/0 collision geometry and MatchLine has enabled layer/mask 2/1 collision geometry, with the two required signal connections visible once each."
+verified_runtime_behavior: "Three observed cycles each removed one crossing object, waited about 0.5 seconds, and showed exactly one next object; Output had no red error."
+known_project_files: ["res://scenes/main.tscn", "res://scenes/falling_thing.tscn", "res://scripts/match_line.gd", "res://scripts/falling_thing.gd", "res://scripts/main.gd"]
+approved_deviations: []
+unresolved_error: "[none]"
+experiment_to_revert: "[none]"
+next_action: "Begin L09.S01"
+```
 
 Do not claim the collision configuration, connection count, three-cycle result,
 or complete-script comparison unless the learner supplied that evidence.

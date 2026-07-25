@@ -1,6 +1,9 @@
 # Lesson 12 — Add Sound and Game Feel
 
-- **Time:** 35–50 minutes
+- **Time:** 35–45 minutes
+- **Pacing:** If the lesson checkpoint is not reached by 45 minutes, stop at
+  the current evidence gate, save the observed handoff below, and resume from
+  that gate next session.
 - **Entry checkpoint:** L11_COMPLETE
 - **Exit checkpoint:** L12_COMPLETE
 - **Lesson steps:** `L12.S01` through `L12.S05`
@@ -568,15 +571,22 @@ last FileSystem names, player Inspector, first red error, Node-dock connection,
 event count, or experiment restoration. If it has passed, record L12_COMPLETE,
 set `next_action` to Begin L13.S01, and use this handoff format:
 
-~~~text
-SESSION_HANDOFF
-checkpoint: L12_COMPLETE
-next_action: Begin L13.S01
-observed: SwitchSound, SuccessSound, and ExplosionSound each have intended streams and Autoplay off
-observed: one valid press, correct match, and mismatch each played exactly its named sound once
-observed: locked Space made no sound or color change; canonical tuning was restored with no red Output error
-experiment_to_revert: none
-~~~
+```SESSION_HANDOFF
+playbook_version: "1.0"
+godot_version: "4.7.1"
+development_os: "[macOS, Windows, or Linux observed]"
+current_lesson: "13"
+current_step: "L13.S01"
+last_exit_checkpoint: "L12_COMPLETE"
+completed_checkpoints: ["L01_COMPLETE", "L02_COMPLETE", "L03_COMPLETE", "L04_COMPLETE", "L05_COMPLETE", "L06_COMPLETE", "L07_COMPLETE", "L08_COMPLETE", "L09_COMPLETE", "L10_COMPLETE", "L11_COMPLETE", "L12_COMPLETE"]
+verified_node_tree: "Main matches NODE-L12, including SwitchSound, SuccessSound, and ExplosionSound as direct AudioStreamPlayer children with intended streams and Autoplay off; FallingThing retains its four canonical children."
+verified_runtime_behavior: "One valid Space press, one correct match, and one mismatch each played its named sound exactly once; locked Space made no sound or color change. Fall speed 180.0, SpawnDelay 0.5, art box 96.0, and explosion duration 0.35 were restored, with no red Output error."
+known_project_files: ["res://scenes/main.tscn", "res://scenes/falling_thing.tscn", "res://scripts/match_line.gd", "res://scripts/falling_thing.gd", "res://scripts/main.gd", "res://scripts/hud.gd", "res://art/guitar.png", "res://art/spaghetti.png", "res://audio/SOURCES.md"]
+approved_deviations: []
+unresolved_error: "[none]"
+experiment_to_revert: "[none]"
+next_action: "Begin L13.S01"
+```
 
 Do not claim the sound count, event order, input lock, source note, or restored
 tuning unless the learner supplied that exact observation.

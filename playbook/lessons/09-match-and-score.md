@@ -1,6 +1,9 @@
 # Lesson 09 — Match and Score
 
-- **Time:** 35–50 minutes
+- **Time:** 35–45 minutes
+- **Pacing:** If the lesson checkpoint is not reached by 45 minutes, stop at
+  the current evidence gate, save the observed handoff below, and resume from
+  that gate next session.
 - **Entry checkpoint:** L08_COMPLETE
 - **Exit checkpoint:** L09_COMPLETE
 - **Lesson steps:** `L09.S01` through `L09.S04`
@@ -509,14 +512,22 @@ observed HUD text, script error, exact matrix row, Output message, or cycle
 result. If it has passed, record L09_COMPLETE, set `next_action` to Begin
 L10.S01, and use this handoff format:
 
-~~~text
-SESSION_HANDOFF
-checkpoint: L09_COMPLETE
-next_action: Begin L10.S01
-observed: blue + GUITAR and red + SPAGHETTI each changed ScoreLabel by exactly one
-observed: blue + SPAGHETTI and red + GUITAR left score unchanged and printed the temporary mismatch message
-experiment_to_revert: none
-~~~
+```SESSION_HANDOFF
+playbook_version: "1.0"
+godot_version: "4.7.1"
+development_os: "[macOS, Windows, or Linux observed]"
+current_lesson: "10"
+current_step: "L10.S01"
+last_exit_checkpoint: "L09_COMPLETE"
+completed_checkpoints: ["L01_COMPLETE", "L02_COMPLETE", "L03_COMPLETE", "L04_COMPLETE", "L05_COMPLETE", "L06_COMPLETE", "L07_COMPLETE", "L08_COMPLETE", "L09_COMPLETE"]
+verified_node_tree: "Main matches NODE-L09, including HUD (CanvasLayer) with ScoreLabel and hud.gd; FallingThing retains its four canonical children."
+verified_runtime_behavior: "Blue + GUITAR and red + SPAGHETTI each increased ScoreLabel by exactly one; blue + SPAGHETTI and red + GUITAR left it unchanged and printed the exact temporary mismatch message. Every observed row removed one object, waited about 0.5 seconds, showed one next object, and had no red Output error."
+known_project_files: ["res://scenes/main.tscn", "res://scenes/falling_thing.tscn", "res://scripts/match_line.gd", "res://scripts/falling_thing.gd", "res://scripts/main.gd", "res://scripts/hud.gd"]
+approved_deviations: []
+unresolved_error: "[none]"
+experiment_to_revert: "[none]"
+next_action: "Begin L10.S01"
+```
 
 Do not claim the four-case matrix, exact single increments, temporary mismatch
 message, or complete-script comparison unless the learner supplied that

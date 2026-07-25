@@ -598,14 +598,22 @@ passed, keep the current L05.S##.G## gate as next_action and record the last
 observed tree, property, script-error, or run result. If it has passed, record
 L05_COMPLETE, set next_action to Begin L06.S01, and use this handoff format:
 
-~~~text
-SESSION_HANDOFF
-checkpoint: L05_COMPLETE
-next_action: Begin L06.S01
-observed: falling_thing.tscn exists; one FallingThing instance at (240, -40)
-observed: it fell straight down at 180.0 pixels per second in two runs
-experiment_to_revert: none
-~~~
+```SESSION_HANDOFF
+playbook_version: "1.0"
+godot_version: "4.7.1"
+development_os: "[macOS, Windows, or Linux observed]"
+current_lesson: "06"
+current_step: "L06.S01"
+last_exit_checkpoint: "L05_COMPLETE"
+completed_checkpoints: ["L01_COMPLETE", "L02_COMPLETE", "L03_COMPLETE", "L04_COMPLETE", "L05_COMPLETE"]
+verified_node_tree: "Main retains the Lesson 04 branches and has exactly one temporary FallingThing instance at (240, -40); FallingThing (Area2D) has Placeholder, TypeLabel, Sprite2D, and CollisionShape2D."
+verified_runtime_behavior: "The temporary instance moved straight down across two fresh runs; its Inspector fall_speed was restored to 180.0 and Output had no red error."
+known_project_files: ["res://scenes/main.tscn", "res://scenes/falling_thing.tscn", "res://scripts/match_line.gd", "res://scripts/falling_thing.gd"]
+approved_deviations: []
+unresolved_error: "[none]"
+experiment_to_revert: "[none]"
+next_action: "Begin L06.S01"
+```
 
 Do not claim the fall observation, restored speed, or complete script comparison
 unless the learner supplied that evidence.

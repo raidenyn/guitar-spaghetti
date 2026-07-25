@@ -1,6 +1,9 @@
 # Lesson 10 — Lose and Restart
 
-- **Time:** 45–60 minutes
+- **Time:** 35–45 minutes
+- **Pacing:** If the lesson checkpoint is not reached by 45 minutes, stop at
+  the current evidence gate, save the observed handoff below, and resume from
+  that gate next session.
 - **Entry checkpoint:** L09_COMPLETE
 - **Exit checkpoint:** L10_COMPLETE
 - **Lesson steps:** `L10.S01` through `L10.S04`
@@ -781,15 +784,22 @@ last panel tree, first red error, signal entry, mismatch observation, or child
 count. If it has passed, record L10_COMPLETE, set `next_action` to Begin
 L11.S01, and use this handoff format:
 
-~~~text
-SESSION_HANDOFF
-checkpoint: L10_COMPLETE
-next_action: Begin L11.S01
-observed: blue + SPAGHETTI and red + GUITAR each ended the round without changing score
-observed: each loss exploded before its final-score panel, ignored Space, and spawned no next object
-observed: two Play Again cycles each restored Score: 0, blue, hidden panel, and one FallingThings child
-experiment_to_revert: none
-~~~
+```SESSION_HANDOFF
+playbook_version: "1.0"
+godot_version: "4.7.1"
+development_os: "[macOS, Windows, or Linux observed]"
+current_lesson: "11"
+current_step: "L11.S01"
+last_exit_checkpoint: "L10_COMPLETE"
+completed_checkpoints: ["L01_COMPLETE", "L02_COMPLETE", "L03_COMPLETE", "L04_COMPLETE", "L05_COMPLETE", "L06_COMPLETE", "L07_COMPLETE", "L08_COMPLETE", "L09_COMPLETE", "L10_COMPLETE"]
+verified_node_tree: "Main matches NODE-L10, including HUD with ScoreLabel and GameOverPanel containing VBoxContainer, GameOverLabel, FinalScoreLabel, and PlayAgainButton; FallingThing retains its four canonical children."
+verified_runtime_behavior: "Blue + SPAGHETTI and red + GUITAR each left score unchanged, locked Space, spawned no next object, and exploded before the final-score panel appeared. Two observed Play Again cycles each restored Score: 0, blue, a hidden panel, and exactly one FallingThings child, with no red Output error."
+known_project_files: ["res://scenes/main.tscn", "res://scenes/falling_thing.tscn", "res://scripts/match_line.gd", "res://scripts/falling_thing.gd", "res://scripts/main.gd", "res://scripts/hud.gd"]
+approved_deviations: []
+unresolved_error: "[none]"
+experiment_to_revert: "[none]"
+next_action: "Begin L11.S01"
+```
 
 Do not claim the loss order, final score, input lock, absence of a later spawn,
 or two clean restarts unless the learner supplied that exact evidence.
