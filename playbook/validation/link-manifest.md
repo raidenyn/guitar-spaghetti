@@ -50,6 +50,8 @@ an allowed release/download page rather than a versioned documentation page.
 
 | Link ID | Source file/anchor | Target | Purpose | Version | Review date | Result |
 |---|---|---|---|---|---|---|
+| NODE-01 | [Lesson 01](../lessons/01-install-and-create.md) | [NODE-L01](../facilitator-solutions/authoritative-node-trees.md#lesson-01-node-l01) | Verify the initial saved Main root. | Playbook 1.0 | 2026-07-25 | PASS |
+| NODE-02 | [Lesson 02](../lessons/02-meet-the-editor.md) | [NODE-L02](../facilitator-solutions/authoritative-node-trees.md#lesson-02-node-l02) | Confirm the editor tour preserves the saved tree. | Playbook 1.0 | 2026-07-25 | PASS |
 | NODE-03 | [Lesson 03](../lessons/03-build-the-screen.md) | [NODE-L03](../facilitator-solutions/authoritative-node-trees.md#lesson-03-node-l03) | Compare the first screen tree. | Playbook 1.0 | 2026-07-25 | PASS |
 | NODE-04 | [Lesson 04](../lessons/04-make-the-line-interactive.md) | [NODE-L04](../facilitator-solutions/authoritative-node-trees.md#lesson-04-node-l04) | Verify MatchLine script attachment. | Playbook 1.0 | 2026-07-25 | PASS |
 | NODE-05 | [Lesson 05](../lessons/05-create-a-falling-thing.md) | [NODE-L05](../facilitator-solutions/authoritative-node-trees.md#lesson-05-node-l05) | Compare reusable scene and temporary instance. | Playbook 1.0 | 2026-07-25 | PASS |
@@ -66,6 +68,8 @@ an allowed release/download page rather than a versioned documentation page.
 
 | Link ID | Source file/anchor | Target | Purpose | Version | Review date | Result |
 |---|---|---|---|---|---|---|
+| PROP-01 | [Lesson 01](../lessons/01-install-and-create.md) | [PROP-L01](../facilitator-solutions/property-checkpoints.md#lesson-01-prop-l01) | Verify project name, renderer, and saved main scene. | Playbook 1.0 | 2026-07-25 | PASS |
+| PROP-02 | [Lesson 02](../lessons/02-meet-the-editor.md) | [PROP-L02](../facilitator-solutions/property-checkpoints.md#lesson-02-prop-l02) | Confirm the editor tour preserves Lesson 01 properties. | Playbook 1.0 | 2026-07-25 | PASS |
 | PROP-03 | [Lesson 03](../lessons/03-build-the-screen.md) | [PROP-L03](../facilitator-solutions/property-checkpoints.md#lesson-03-prop-l03) | Screen, background, line, shape, and score values. | Playbook 1.0 | 2026-07-25 | PASS |
 | PROP-04 | [Lesson 04](../lessons/04-make-the-line-interactive.md) | [PROP-L04](../facilitator-solutions/property-checkpoints.md#lesson-04-prop-l04) | Exact action name and Physical Space event. | Playbook 1.0 | 2026-07-25 | PASS |
 | PROP-05 | [Lesson 05](../lessons/05-create-a-falling-thing.md) | [PROP-L05](../facilitator-solutions/property-checkpoints.md#lesson-05-prop-l05) | FallingThing geometry, layers, test position, and speed. | Playbook 1.0 | 2026-07-25 | PASS |
