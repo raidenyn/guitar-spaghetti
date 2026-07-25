@@ -7,6 +7,112 @@ indentation.
 
 For the full language reference, use Godot's versioned [GDScript basics](https://docs.godotengine.org/en/4.7/tutorials/scripting/gdscript/gdscript_basics.html).
 
+## Glossary
+
+### Callback
+
+A callback is a recipe Godot runs later when a particular event happens. More
+precisely, it is a function connected to a signal or engine event, so Godot
+calls it instead of the player calling it directly.
+
+```gdscript
+func _on_spawn_delay_timeout() -> void:
+    _spawn_thing()
+```
+
+**Common mistake:** Calling `_on_spawn_delay_timeout()` yourself instead of
+letting the `SpawnDelay.timeout` signal call it.
+
+### Method
+
+A method is a recipe that belongs to one particular object. More precisely, it
+is a function defined by a node's script and called through that node.
+
+```gdscript
+match_line.reset_to_blue()
+```
+
+**Common mistake:** Writing `reset_to_blue()` in `Main` without saying which
+object owns the method; the course calls it on `match_line`.
+
+### Node2D
+
+A Node2D is a game object with a 2D place, so it can have an `x` and `y`
+position. More precisely, it is Godot's base scene-tree node for 2D
+transforms, such as `position`, `rotation`, and `scale`.
+
+```gdscript
+extends Node2D # The Main scene's root uses a 2D game-space node.
+```
+
+**Common mistake:** Using `Control` for a falling game object when the lesson
+needs its normal 2D position and movement behavior.
+
+### PanelContainer
+
+A PanelContainer is a box that can draw a panel behind its child. More
+precisely, it is a Control container that uses its theme's panel style and
+sizes its child within the panel.
+
+```text
+HUD/GameOverPanel (PanelContainer)
+```
+
+**Common mistake:** Putting the Game Over labels beside `GameOverPanel` rather
+than inside it, so the panel cannot arrange them as one overlay.
+
+### Property
+
+A property is a named piece of information an object keeps, like a character
+sheet fact. More precisely, it is a value exposed by a node or script that can
+be read or changed with dot notation.
+
+```gdscript
+thing.resolved = true
+```
+
+**Common mistake:** Treating `resolved` like a function and writing
+`thing.resolved()`; this course value is a property, not a method.
+
+### RectangleShape2D
+
+A RectangleShape2D is an invisible rectangle used for collision. More
+precisely, it is the shape resource assigned to a `CollisionShape2D` child of
+the falling thing or match line.
+
+```text
+MatchLine/CollisionShape2D (RectangleShape2D)
+```
+
+**Common mistake:** Resizing only the visible line while leaving its
+`RectangleShape2D` at the old size, making the collision area disagree.
+
+### Script
+
+A script is a file of instructions that gives a Godot node its behavior. More
+precisely, it is a GDScript resource attached to a node, such as the Main
+scene's controller.
+
+```text
+res://scripts/main.gd attached to Main
+```
+
+**Common mistake:** Attaching `main.gd` to `HUD`; the course attaches it to the
+`Main` root, where its node paths and game state belong.
+
+### VBoxContainer
+
+A VBoxContainer is a helper that stacks its child controls from top to bottom.
+More precisely, it is a Control container that automatically lays out its
+visible children vertically.
+
+```text
+HUD/GameOverPanel/VBoxContainer (VBoxContainer)
+```
+
+**Common mistake:** Moving the Game Over labels by hand after placing them in
+the VBoxContainer; let the container keep their vertical layout.
+
 ## extends
 
 `extends` says which Godot node type supplies this script's starting powers.
@@ -114,12 +220,17 @@ use `==` for comparison when a lesson requires it.
 `and` requires both questions to be true; `or` accepts either true question.
 
 ```gdscript
-if falling and not resolved:
-    position.y += fall_speed * delta
+return (
+    kind == FallingThing.Kind.GUITAR
+    and current_color == LineColor.BLUE
+) or (
+    kind == FallingThing.Kind.SPAGHETTI
+    and current_color == LineColor.RED
+)
 ```
 
-**Common mistake:** Using `or` here would let a resolved object keep falling
-whenever one half of the condition remains true.
+**Common mistake:** Changing either `and` to `or`; then a guitar could match
+just because the line is blue, even when the kind check is false.
 
 ## Signals
 
@@ -179,7 +290,7 @@ func _ready() -> void:
 **Common mistake:** Calling `_ready()` yourself to reset a game; call the
 lesson's named reset function instead.
 
-## _processdelta
+## _process(delta)
 
 `_process(delta)` is a special function Godot calls every frame; `delta` is
 the time since the previous frame.
@@ -197,11 +308,11 @@ makes speed depend on the computer's frame rate.
 `await` pauses one function until a signal or other awaitable event finishes.
 
 ```gdscript
-await get_tree().create_timer(0.35).timeout
+await tween.finished
 ```
 
-**Common mistake:** Expecting the whole game to freeze; only this function waits
-while other game processing can continue.
+**Common mistake:** Expecting the whole game to freeze; the course's explosion
+function waits for its tween while other game processing can continue.
 
 ## preload
 
@@ -254,8 +365,8 @@ whole `FallingThing` node.
 engine work finishes.
 
 ```gdscript
-thing.call_deferred("queue_free")
+call_deferred("_spawn_thing")
 ```
 
-**Common mistake:** Freeing a collision object immediately inside an overlap
-callback when the lesson calls for deferred cleanup; use the prescribed call.
+**Common mistake:** Calling `_spawn_thing()` directly from `start_new_game()`;
+the course defers it until the scene reset work has finished.
