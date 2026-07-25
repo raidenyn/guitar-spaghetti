@@ -154,10 +154,51 @@ function isInside(root, path) {
   return pathFromRoot === "" || (!pathFromRoot.startsWith("..") && !pathFromRoot.includes("../"));
 }
 
+function stripInlineCode(line) {
+  let visibleText = "";
+  let cursor = 0;
+
+  while (cursor < line.length) {
+    const openingIndex = line.indexOf("`", cursor);
+    if (openingIndex === -1) return visibleText + line.slice(cursor);
+
+    const delimiter = /^`+/.exec(line.slice(openingIndex))[0];
+    const closingIndex = line.indexOf(delimiter, openingIndex + delimiter.length);
+    if (closingIndex === -1) return visibleText + line.slice(cursor);
+
+    visibleText += line.slice(cursor, openingIndex);
+    cursor = closingIndex + delimiter.length;
+  }
+
+  return visibleText;
+}
+
+function markdownTextWithoutCode(content) {
+  const visibleLines = [];
+  let fenceDelimiter = "";
+
+  for (const line of content.split(/\r?\n/)) {
+    const fence = /^[ \t]{0,3}(`{3,}|~{3,})/.exec(line)?.[1];
+    if (fenceDelimiter) {
+      if (fence && fence[0] === fenceDelimiter[0] && fence.length >= fenceDelimiter.length) {
+        fenceDelimiter = "";
+      }
+      continue;
+    }
+    if (fence) {
+      fenceDelimiter = fence;
+      continue;
+    }
+    visibleLines.push(stripInlineCode(line));
+  }
+
+  return visibleLines.join("\n");
+}
+
 function markdownTargets(content) {
   const targets = [];
   const expression = /!?\[[^\]]*\]\(([^\s)]+)(?:\s+[^)]*)?\)/g;
-  for (const match of content.matchAll(expression)) {
+  for (const match of markdownTextWithoutCode(content).matchAll(expression)) {
     targets.push(match[1].replace(/^<|>$/g, ""));
   }
   return targets;

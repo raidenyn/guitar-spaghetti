@@ -164,6 +164,26 @@ test("rejects a missing relative-link anchor", async (t) => {
   assert.ok((await issuesFor(root)).some((issue) => issue.code === "BROKEN_LINK"));
 });
 
+test("ignores a link-shaped inline-code example", async (t) => {
+  const root = await makeFixture(t);
+  await writeFixtureFile(root, "references/editor-map.md",
+    "## Editor map\n\nType `[sample](missing.md)` as an example.\n");
+  assert.deepEqual(await validatePlaybook(root), []);
+});
+
+test("ignores a link-shaped fenced-code example", async (t) => {
+  const root = await makeFixture(t);
+  await writeFixtureFile(root, "references/editor-map.md", [
+    "## Editor map",
+    "",
+    "```markdown",
+    "[sample](missing.md)",
+    "```",
+    "",
+  ].join("\n"));
+  assert.deepEqual(await validatePlaybook(root), []);
+});
+
 test("rejects an unfinished marker", async (t) => {
   const root = await makeFixture(t);
   const marker = "T" + "BD";
