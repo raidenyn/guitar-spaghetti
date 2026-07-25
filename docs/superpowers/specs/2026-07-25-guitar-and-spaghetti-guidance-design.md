@@ -1,10 +1,10 @@
 # Guitar and Spaghetti Learning Guide Design
 
-**Date:** 2026-07-25  
-**Target engine:** Godot 4.7.1 stable  
-**Language:** GDScript  
-**Target platform:** Desktop, controlled with the Space bar  
-**Audience:** An 11-year-old child and an adult, both new to Godot
+- **Date:** 2026-07-25
+- **Target engine:** Godot 4.7.1 stable
+- **Language:** GDScript
+- **Target platform:** Desktop, controlled with the Space bar
+- **Audience:** An 11-year-old child and an adult, both new to Godot
 
 ## Purpose
 
@@ -46,7 +46,7 @@ The adult acts as navigator and helper. Parent notes explain when to let the chi
 
 ## Core Game Design
 
-The game begins with a score of zero and a blue matching line near the bottom of a portrait-oriented desktop playfield.
+The game begins with a score of zero and a blue matching line near the bottom of a portrait-oriented desktop playfield. The live score stays in the upper-left corner. The centered game-over overlay appears above the playfield only after a mismatch.
 
 Only one object falls at a time in the core version. This keeps the mechanic fair and makes the event flow easy to understand.
 
