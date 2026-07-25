@@ -54,12 +54,54 @@ instead of squashing the game.
 
 #### Actions
 
-1. Open **Project > Project Settings**, then go to **Display > Window > Size**
-   and set **Viewport Width** to `480` and **Viewport Height** to `720`.
-2. In **Display > Window > Stretch**, set **Mode** to `canvas_items` and
-   **Aspect** to `keep`.
-3. Close Project Settings, save `main.tscn`, run the project, and stop it
-   after looking at the window shape.
+##### Action group L03.S01.G01 — Set the viewport width
+
+1. Open **Project > Project Settings**.
+2. Go to **Display > Window > Size**.
+3. Set **Viewport Width** to `480`.
+
+**Observable gate — `L03.S01.G01 viewport width`:** What value is visibly
+shown for **Viewport Width**?
+
+**PASS:** The learner reports `480`; continue to `L03.S01.G02`.
+**RETRY:** Ask the learner to read the visible Width value exactly; do not
+continue yet.
+**DIAGNOSE:** If the Size settings cannot be found or show a different value,
+use the Project Settings search for `viewport`, return to **Display > Window >
+Size**, correct only Width, and repeat this gate.
+
+##### Action group L03.S01.G02 — Finish the portrait settings
+
+1. Set **Viewport Height** to `720`.
+2. In **Display > Window > Stretch**, set **Mode** to `canvas_items`.
+3. Set **Aspect** to `keep`.
+
+**Observable gate — `L03.S01.G02 portrait settings`:** What three visible
+values do you see for Height, Stretch Mode, and Stretch Aspect?
+
+**PASS:** The learner reports `720`, `canvas_items`, and `keep`; continue to
+`L03.S01.G03`.
+**RETRY:** Request the missing exact visible value; do not continue yet.
+**DIAGNOSE:** If any value differs, change only that visible value in
+**Display > Window**, then repeat this gate.
+
+##### Action group L03.S01.G03 — Observe the game-window shape
+
+1. Close Project Settings.
+2. Save `main.tscn`.
+3. Run the project and look at the window shape.
+
+**Observable gate — `L03.S01.G03 portrait run`:** Is the run window taller
+than it is wide, and what four settings did we set?
+
+**PASS:** The learner observes a portrait-shaped run window and reports
+`480`, `720`, `canvas_items`, and `keep`; stop the run and continue to
+`L03.S02`.
+**RETRY:** Ask for the missing shape observation or setting value; do not
+continue yet.
+**DIAGNOSE:** If the window is wide or the project will not run, read the
+first red Output message if there is one. Correct one visible window setting
+or return to the Lesson 02 run check, then repeat this gate.
 
 #### Check your work
 
@@ -98,11 +140,53 @@ first under `Main`, so later game pieces can be drawn on top of it.
 
 #### Actions
 
-1. Select `Main`, add a **ColorRect** child, and name it exactly `Background`.
-2. In the Inspector set `Background` position to `(0, 0)`, size to
-   `(480, 720)`, and color to `#111827`.
-3. Set **Mouse > Filter** to **Ignore**, save, and run the project to observe
-   the dark portrait playfield.
+##### Action group L03.S02.G01 — Create the background node
+
+1. Select `Main`.
+2. Add a **ColorRect** child.
+3. Name it exactly `Background`.
+
+**Observable gate — `L03.S02.G01 background node`:** What exact first child
+of `Main` is visible in the Scene tree?
+
+**PASS:** The learner reports `Background (ColorRect)` as the first child;
+continue to `L03.S02.G02`.
+**RETRY:** Ask for the exact child name and node type; do not continue yet.
+**DIAGNOSE:** If `Background` is missing, has another name, or is not under
+`Main`, make one local tree correction and repeat this gate.
+
+##### Action group L03.S02.G02 — Paint the background
+
+1. In the Inspector, set `Background` position to `(0, 0)`.
+2. Set its size to `(480, 720)`.
+3. Set its color to `#111827`.
+
+**Observable gate — `L03.S02.G02 background appearance`:** What position,
+size, and color are visibly shown for `Background`?
+
+**PASS:** The learner reports `(0, 0)`, `(480, 720)`, and `#111827`; continue
+to `L03.S02.G03`.
+**RETRY:** Request the missing exact Inspector value; do not continue yet.
+**DIAGNOSE:** If one value differs, correct only that value and repeat this
+gate.
+
+##### Action group L03.S02.G03 — Check the dark playfield
+
+1. Set **Mouse > Filter** to **Ignore**.
+2. Save `main.tscn`.
+3. Run the project and observe the playfield.
+
+**Observable gate — `L03.S02.G03 dark playfield`:** What color fills the run
+window, and what is the first child under `Main`?
+
+**PASS:** The learner observes a dark `#111827` playfield and reports
+`Background (ColorRect)` as the first child; stop the run and continue to
+`L03.S03`.
+**RETRY:** Request the missing visible color or tree observation; do not
+continue yet.
+**DIAGNOSE:** If the window is not dark, correct one visible `Background`
+property; if its tree position is wrong, move it to be the first direct child
+of `Main`; then repeat this gate.
 
 #### Check your work
 
@@ -143,17 +227,101 @@ Lesson 08.
 
 #### Actions
 
-1. Select `Main`, add an **Area2D** child named exactly `MatchLine`, and set
-   its position to `(0, 640)`.
-2. Select `MatchLine`, add a **ColorRect** child named exactly `Visual`, then
-   set its position to `(0, -6)`, size to `(480, 12)`, and color to `#2684ff`.
-3. Add a **CollisionShape2D** child under `MatchLine`; create a
-   **RectangleShape2D** for its Shape, set the node position to `(240, 0)`,
-   and set the rectangle size to `(480, 12)`. Save and run the project.
+##### Action group L03.S03.G01 — Create the line parent
+
+1. Select `Main`.
+2. Add an **Area2D** child.
+3. Name it exactly `MatchLine`.
+
+**Observable gate — `L03.S03.G01 line parent`:** What exact node name and
+type are visible as a direct child of `Main`?
+
+**PASS:** The learner reports `MatchLine (Area2D)`; continue to
+`L03.S03.G02`.
+**RETRY:** Ask for the exact visible node name and type; do not continue yet.
+**DIAGNOSE:** If the node is missing, misspelled, or has the wrong type,
+correct only that tree issue and repeat this gate.
+
+##### Action group L03.S03.G02 — Add the blue-line visual node
+
+1. Select `MatchLine`.
+2. Add a **ColorRect** child.
+3. Name it exactly `Visual`.
+
+**Observable gate — `L03.S03.G02 visual node`:** What exact child of
+`MatchLine` is visible in the Scene tree?
+
+**PASS:** The learner reports `Visual (ColorRect)` under `MatchLine`; continue
+to `L03.S03.G03`.
+**RETRY:** Ask for the exact visible child name and type; do not continue yet.
+**DIAGNOSE:** If `Visual` is attached to `Main`, has another name, or has the
+wrong type, make one local tree correction and repeat this gate.
+
+##### Action group L03.S03.G03 — Paint the blue line
+
+1. Set `Visual` position to `(0, -6)`.
+2. Set its size to `(480, 12)`.
+3. Set its color to `#2684ff`.
+
+**Observable gate — `L03.S03.G03 visual appearance`:** What position, size,
+and color are visibly shown for `Visual`?
+
+**PASS:** The learner reports `(0, -6)`, `(480, 12)`, and `#2684ff`; continue
+to `L03.S03.G04`.
+**RETRY:** Request the missing exact Inspector value; do not continue yet.
+**DIAGNOSE:** If one value differs, correct only that visible `Visual`
+property and repeat this gate.
+
+##### Action group L03.S03.G04 — Add the collision shape
+
+1. Select `MatchLine`.
+2. Add a **CollisionShape2D** child.
+3. Create a **RectangleShape2D** for its **Shape**.
+
+**Observable gate — `L03.S03.G04 collision shape`:** What second child of
+`MatchLine` and what Shape resource are visibly shown?
+
+**PASS:** The learner reports `CollisionShape2D` and `RectangleShape2D`;
+continue to `L03.S03.G05`.
+**RETRY:** Ask for the missing exact child or Shape resource; do not continue
+yet.
+**DIAGNOSE:** If the child is under `Main` or the Shape is absent or different,
+correct one local tree or Shape setting and repeat this gate.
+
+##### Action group L03.S03.G05 — Size the collision shape
+
+1. Set the `CollisionShape2D` node position to `(240, 0)`.
+2. Set the `RectangleShape2D` size to `(480, 12)`.
+3. Save `main.tscn`.
+
+**Observable gate — `L03.S03.G05 collision dimensions`:** What node position
+and rectangle size are visibly shown for the collision shape?
+
+**PASS:** The learner reports `(240, 0)` and `(480, 12)`; continue to
+`L03.S03.G06`.
+**RETRY:** Request the missing exact Inspector value; do not continue yet.
+**DIAGNOSE:** If one value differs, correct only that visible collision-shape
+property and repeat this gate.
+
+##### Action group L03.S03.G06 — Observe the blue line
+
+1. Run the project.
+
+**Observable gate — `L03.S03.G06 blue-line run`:** Where is the blue line in
+the run window, and which two children are inside `MatchLine` right now?
+
+**PASS:** The learner observes a blue horizontal line near the bottom at y
+`640` and reports `Visual (ColorRect)` and `CollisionShape2D` under
+`MatchLine (Area2D)`; stop the run and continue to `L03.S04`.
+**RETRY:** Request the missing line observation or exact child name; do not
+continue yet.
+**DIAGNOSE:** If the line is off-screen, has the wrong appearance, or a child
+is in the wrong place, make one matching local correction and repeat this
+gate.
 
 #### Check your work
 
-Ask: “In the run window, where is the blue line, and what three children are
+Ask: “In the run window, where is the blue line, and what two children are
 inside `MatchLine` right now?” **PASS** requires a blue horizontal line near
 the bottom at y `640`, plus the child names `Visual (ColorRect)` and
 `CollisionShape2D` under `MatchLine (Area2D)`.
@@ -193,11 +361,63 @@ world underneath it.
 
 #### Actions
 
-1. Select `Main`, add a **CanvasLayer** child, and name it exactly `HUD`.
-2. Select `HUD`, add a **Label** child named exactly `ScoreLabel`, set its text
-   to `Score: 0`, and set its position to `(16, 16)`.
-3. Save `main.tscn`, run the project, and observe both the score and blue line
-   on the dark playfield.
+##### Action group L03.S04.G01 — Create the HUD layer
+
+1. Select `Main`.
+2. Add a **CanvasLayer** child.
+3. Name it exactly `HUD`.
+
+**Observable gate — `L03.S04.G01 HUD node`:** What exact node name and type
+are visible as a direct child of `Main`?
+
+**PASS:** The learner reports `HUD (CanvasLayer)`; continue to `L03.S04.G02`.
+**RETRY:** Ask for the exact visible node name and type; do not continue yet.
+**DIAGNOSE:** If the node is missing, misspelled, or has the wrong type,
+correct only that tree issue and repeat this gate.
+
+##### Action group L03.S04.G02 — Create the score label
+
+1. Select `HUD`.
+2. Add a **Label** child.
+3. Name it exactly `ScoreLabel`.
+
+**Observable gate — `L03.S04.G02 score-label node`:** What exact child of
+`HUD` is visible in the Scene tree?
+
+**PASS:** The learner reports `ScoreLabel (Label)` under `HUD`; continue to
+`L03.S04.G03`.
+**RETRY:** Ask for the exact visible child name and type; do not continue yet.
+**DIAGNOSE:** If `ScoreLabel` is attached to another node, has another name,
+or has the wrong type, make one local tree correction and repeat this gate.
+
+##### Action group L03.S04.G03 — Set the score-label content
+
+1. Set `ScoreLabel` text to `Score: 0`.
+2. Set its position to `(16, 16)`.
+3. Save `main.tscn`.
+
+**Observable gate — `L03.S04.G03 score-label properties`:** What exact text
+and position are visibly shown for `ScoreLabel`?
+
+**PASS:** The learner reports `Score: 0` at `(16, 16)`; continue to
+`L03.S04.G04`.
+**RETRY:** Request the missing exact Inspector value; do not continue yet.
+**DIAGNOSE:** If either value differs, correct only that visible `ScoreLabel`
+property and repeat this gate.
+
+##### Action group L03.S04.G04 — Observe the finished screen
+
+1. Run the project.
+
+**Observable gate — `L03.S04.G04 finished-screen run`:** What does the
+top-left label say, where is it, and where is the blue line?
+
+**PASS:** The learner observes `Score: 0` at `(16, 16)` and a blue line near
+the bottom on the dark playfield; stop the run and use the lesson checkpoint.
+**RETRY:** Request the missing visible result; do not continue yet.
+**DIAGNOSE:** If the score is missing or misplaced, correct one matching local
+tree or `ScoreLabel` property issue; if the line is missing, return to the
+failed `L03.S03.G06` gate; then repeat this gate.
 
 #### Check your work
 
