@@ -242,72 +242,85 @@ type are visible as a direct child of `Main`?
 **DIAGNOSE:** If the node is missing, misspelled, or has the wrong type,
 correct only that tree issue and repeat this gate.
 
-##### Action group L03.S03.G02 — Add the blue-line visual node
+##### Action group L03.S03.G02 — Position the line parent
+
+1. Select `MatchLine`.
+2. Set its position to `(0, 640)`.
+
+**Observable gate — `L03.S03.G02 line position`:** What position is visibly
+shown for `MatchLine` in the Inspector?
+
+**PASS:** The learner reports `(0, 640)`; continue to `L03.S03.G03`.
+**RETRY:** Request the exact visible Inspector value; do not continue yet.
+**DIAGNOSE:** If the position differs, correct only the `MatchLine` position
+and repeat this gate.
+
+##### Action group L03.S03.G03 — Add the blue-line visual node
 
 1. Select `MatchLine`.
 2. Add a **ColorRect** child.
 3. Name it exactly `Visual`.
 
-**Observable gate — `L03.S03.G02 visual node`:** What exact child of
+**Observable gate — `L03.S03.G03 visual node`:** What exact child of
 `MatchLine` is visible in the Scene tree?
 
 **PASS:** The learner reports `Visual (ColorRect)` under `MatchLine`; continue
-to `L03.S03.G03`.
+to `L03.S03.G04`.
 **RETRY:** Ask for the exact visible child name and type; do not continue yet.
 **DIAGNOSE:** If `Visual` is attached to `Main`, has another name, or has the
 wrong type, make one local tree correction and repeat this gate.
 
-##### Action group L03.S03.G03 — Paint the blue line
+##### Action group L03.S03.G04 — Paint the blue line
 
 1. Set `Visual` position to `(0, -6)`.
 2. Set its size to `(480, 12)`.
 3. Set its color to `#2684ff`.
 
-**Observable gate — `L03.S03.G03 visual appearance`:** What position, size,
+**Observable gate — `L03.S03.G04 visual appearance`:** What position, size,
 and color are visibly shown for `Visual`?
 
 **PASS:** The learner reports `(0, -6)`, `(480, 12)`, and `#2684ff`; continue
-to `L03.S03.G04`.
+to `L03.S03.G05`.
 **RETRY:** Request the missing exact Inspector value; do not continue yet.
 **DIAGNOSE:** If one value differs, correct only that visible `Visual`
 property and repeat this gate.
 
-##### Action group L03.S03.G04 — Add the collision shape
+##### Action group L03.S03.G05 — Add the collision shape
 
 1. Select `MatchLine`.
 2. Add a **CollisionShape2D** child.
 3. Create a **RectangleShape2D** for its **Shape**.
 
-**Observable gate — `L03.S03.G04 collision shape`:** What second child of
+**Observable gate — `L03.S03.G05 collision shape`:** What second child of
 `MatchLine` and what Shape resource are visibly shown?
 
 **PASS:** The learner reports `CollisionShape2D` and `RectangleShape2D`;
-continue to `L03.S03.G05`.
+continue to `L03.S03.G06`.
 **RETRY:** Ask for the missing exact child or Shape resource; do not continue
 yet.
 **DIAGNOSE:** If the child is under `Main` or the Shape is absent or different,
 correct one local tree or Shape setting and repeat this gate.
 
-##### Action group L03.S03.G05 — Size the collision shape
+##### Action group L03.S03.G06 — Size the collision shape
 
 1. Set the `CollisionShape2D` node position to `(240, 0)`.
 2. Set the `RectangleShape2D` size to `(480, 12)`.
 3. Save `main.tscn`.
 
-**Observable gate — `L03.S03.G05 collision dimensions`:** What node position
+**Observable gate — `L03.S03.G06 collision dimensions`:** What node position
 and rectangle size are visibly shown for the collision shape?
 
 **PASS:** The learner reports `(240, 0)` and `(480, 12)`; continue to
-`L03.S03.G06`.
+`L03.S03.G07`.
 **RETRY:** Request the missing exact Inspector value; do not continue yet.
 **DIAGNOSE:** If one value differs, correct only that visible collision-shape
 property and repeat this gate.
 
-##### Action group L03.S03.G06 — Observe the blue line
+##### Action group L03.S03.G07 — Observe the blue line
 
 1. Run the project.
 
-**Observable gate — `L03.S03.G06 blue-line run`:** Where is the blue line in
+**Observable gate — `L03.S03.G07 blue-line run`:** Where is the blue line in
 the run window, and which two children are inside `MatchLine` right now?
 
 **PASS:** The learner observes a blue horizontal line near the bottom at y
@@ -417,7 +430,7 @@ the bottom on the dark playfield; stop the run and use the lesson checkpoint.
 **RETRY:** Request the missing visible result; do not continue yet.
 **DIAGNOSE:** If the score is missing or misplaced, correct one matching local
 tree or `ScoreLabel` property issue; if the line is missing, return to the
-failed `L03.S03.G06` gate; then repeat this gate.
+failed `L03.S03.G07` gate; then repeat this gate.
 
 #### Check your work
 
