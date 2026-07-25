@@ -86,7 +86,7 @@ Use this only after the learner provides evidence of a specific failure. Give on
 
 ### Goal
 
-Make a new project folder where Godot can keep our game files.
+Set up a new project in the Godot Project Manager.
 
 ### Why this matters
 
@@ -96,15 +96,15 @@ A project folder is the game's home, so Godot can find the scenes and scripts we
 
 1. In the Godot Project Manager, choose **Create**.
 2. Name the project `GuitarAndSpaghetti`.
-3. Choose a new empty folder for it, then choose **Create & Edit**.
+3. Choose a new empty folder for it.
 
 ### What should happen
 
-The Godot editor opens and the FileSystem dock shows the new project.
+The project name and folder fields are filled in and ready for the next action group.
 
 ### Tell me what you observe
 
-What project name appears in the editor and what is the first item you see in the FileSystem dock?
+What project name and folder path do you see before we create the project? Wait for that observation before giving the next action group.
 
 ### Example 2 — Precise PASS
 
