@@ -6,6 +6,60 @@ and contains the stated evidence. `FAIL` means the inspected text does not
 fully satisfy the requirement. Static review does not claim that a learner ran
 Godot or that a remote facilitator model was invoked.
 
+## Final completion audit (2026-07-26)
+
+This is the Task 22 final completion audit pass. Every row below was
+re-inspected against the current playbook content rather than re-asserted.
+Findings:
+
+- `node --test playbook/validation/check_playbook.test.mjs` — 18/18 tests
+  PASS.
+- `node playbook/validation/check_playbook.mjs playbook` — exit `0`,
+  `Playbook validation passed`.
+- A repository-wide search for forbidden generated-project artifacts
+  (`project.godot`, `*.tscn`, `*.gd`, `*.pck`, `*.exe`, `*.app` outside
+  `.git`) returned no matches; all GDScript in the repository appears only
+  inside Markdown code fences.
+- A canonical-identifier sweep (`switch_line`, `FallingThings`, `MatchLine`,
+  `SpawnDelay`, `PlayAgainButton`, `GUITAR`, `SPAGHETTI`) found 606 consistent,
+  correctly capitalized occurrences across `playbook/`, and the rejected
+  alternatives `switch_color`, `FallingObjects`, `SpawnTimer`, and
+  `RestartButton` returned zero matches.
+- Every design heading in
+  `docs/superpowers/specs/2026-07-25-guitar-and-spaghetti-playbook-design.md`
+  (outside the self-contained `playbook/` package, so cited here by path only,
+  not as a package-internal Markdown link)
+  maps to at least one `PASS` row below: Purpose and Final Deliverable are
+  covered jointly by the `SC-*`, `VALID-*`, `SOL-*`, and `SCOPE-10` rows;
+  Success Criteria by `SC-01`–`SC-13`; Playbook Package by `ART-*`, `REF-*`,
+  and `SOL-*`; Facilitator Execution Contract by `FC-01`–`FC-15`; Teaching
+  Approach by `SC-04`–`SC-06` and `FC-09`; Model Neutrality and Context
+  Loading by `SC-08`, `SC-12`, `SCOPE-12`; Progress State and Handoff by
+  `ART-03`, `SC-08`, `SC-12`, `FC-15`; Core Game Design by `GAME-01`–`GAME-08`;
+  Project Architecture by `ARCH-01`–`ARCH-05`; Visual and Audio Progression
+  by `LESSON-11`, `LESSON-12`, `REF-11`, `ACCEPT-13`; Lesson Roadmap by
+  `LESSON-01`–`LESSON-13`; Testing Strategy by `ACCEPT-01`–`ACCEPT-14` and
+  `VALID-03`/`VALID-04`; Troubleshooting Design by `SOL-04` and `REF-10`;
+  Reference Strategy by `REF-01`–`REF-14` and `VAL-ART-02`; Playbook
+  Validation by `VALID-01`–`VALID-04`; Scope Boundaries by
+  `SCOPE-01`–`SCOPE-12`. No missing or weak row was found.
+- Note: the design's "Primary starting references" list (Reference Strategy
+  section) names six example URLs, three of which
+  (`godotengine.org/article/maintenance-release-godot-4-7-1/`,
+  `getting_started/step_by_step/index.html`, and
+  `getting_started/first_2d_game/index.html`) do not literally appear in
+  [link-manifest.md](link-manifest.md) or elsewhere in `playbook/`. The
+  playbook instead cites topically equivalent, correctly versioned `4.7`
+  pages for every `REF-*` chapter (for example, "Introduction to 2D" and
+  "GDScript basics"). This is recorded as an observation, not a `FAIL`: the
+  design states these are illustrative "Primary starting references" for the
+  Reference Strategy, and every `REF-*` row below already has a PASS-worthy,
+  version-correct citation. No requirement row depends on those three
+  specific URLs.
+- Live network verification of external URLs was not possible in this
+  environment; see [link-manifest.md](link-manifest.md) for the 2026-07-26
+  static re-review.
+
 ## Success criteria
 
 | Requirement ID | Requirement | Authoritative file/anchor | Verification method | Result | Evidence |
@@ -127,7 +181,7 @@ Godot or that a remote facilitator model was invoked.
 |---|---|---|---|---|---|
 | VALID-01 | Structural validation checks files, schemas, links, placeholders, versions, and checkpoints. | [Checker](check_playbook.mjs) | Run checker and its unit tests. | PASS | Automated checker implements all named structural checks. |
 | VALID-02 | Curriculum validation maps requirements and checks continuity and names. | [This checklist](requirements-checklist.md#playbook-requirements-checklist); [canonical values](../facilitator-solutions/property-checkpoints.md#canonical-value-ownership) | Inspect every design category and checkpoint chain. | PASS | This file maps the design; cumulative checkpoints define stable names and values. |
-| VALID-03 | Technical validation reviews the complete canonical implementation path. | [Script checkpoints](../facilitator-solutions/script-checkpoints.md); [node trees](../facilitator-solutions/authoritative-node-trees.md); [properties](../facilitator-solutions/property-checkpoints.md) | Inspect syntax, paths, signals, state, resolution, cleanup, and export prerequisites. | PASS | Complete cumulative trees, properties, and scripts expose one reviewable path; learner runtime remains a lesson-time evidence gate. |
+| VALID-03 | Technical validation reviews the complete canonical implementation path. | [Script checkpoints](../facilitator-solutions/script-checkpoints.md); [node trees](../facilitator-solutions/authoritative-node-trees.md); [properties](../facilitator-solutions/property-checkpoints.md) | Inspect syntax, paths, signals, state, resolution, cleanup, and export prerequisites. | PASS | Complete cumulative trees, properties, and scripts expose one reviewable path; learner runtime remains a lesson-time evidence gate. **2026-07-26 audit — `SCRIPT-L04` through `SCRIPT-L12` read cumulatively:** every `@onready var ... = $Path` (`Visual`, `Placeholder`, `TypeLabel`, `Sprite2D`, `FallingThings`, `MatchLine`, `SpawnDelay`, `HUD`, `ScoreLabel`, `GameOverPanel`, `GameOverPanel/VBoxContainer/FinalScoreLabel`, `SwitchSound`, `SuccessSound`, `ExplosionSound`) resolves against the matching `NODE-L04`–`NODE-L13` tree in [authoritative-node-trees.md](../facilitator-solutions/authoritative-node-trees.md); every signal (`thing_crossed(thing: FallingThing)`, `color_switched`, `play_again_requested`, `Timer.timeout`, `Button.pressed`) matches its listed callback's exact parameter shape; `guitar.png`/`spaghetti.png` are only `preload`-ed starting at `SCRIPT-L11` (after Lesson 10) and the three `AudioStreamPlayer` nodes only appear from `SCRIPT-L12`, so no script uses an asset before its lesson creates it; `_on_match_line_thing_crossed` sets `thing.resolved = true` and clears `current_thing` before branching, so no object can resolve twice (`ACCEPT-09`); `_spawn_thing()` guards on `is_instance_valid(current_thing)`, keeping exactly one object active (`SCOPE-01`); `_finish_game()` sets `state = GameState.GAME_OVER`, stops `spawn_delay`, and disables `MatchLine` input, so game over stops spawning and input; `start_new_game()` frees every `FallingThings` child, then resets `score`, `state`, `spawn_delay`, `hud`, and `match_line` before a deferred respawn, so restart clears old objects and resets score/line/UI; the Lesson 11 `_apply_visual()` only reassigns `sprite.texture`/`scale` and placeholder visibility, never `CollisionShape2D`, so art changes visuals without changing collision; and each named audio cue (`switch_sound`, `success_sound`, `explosion_sound`) is called from exactly one call site gated by its own event, so audio plays once per named event. A repository-wide `find` for `project.godot`, `*.tscn`, `*.gd`, `*.pck`, `*.exe`, and `*.app` outside `.git` returned no matches (Step 3). A canonical-identifier sweep of `switch_line`, `FallingThings`, `MatchLine`, `SpawnDelay`, `PlayAgainButton`, `GUITAR`, `SPAGHETTI` found consistent capitalization throughout `playbook/`, and the rejected alternatives `switch_color`, `FallingObjects`, `SpawnTimer`, and `RestartButton` return zero matches (Step 4); the one apparent hit, "Kind.Guitar appears in code" in [Lesson 06](../lessons/06-create-guitars-and-spaghetti.md#if-it-does-not-work), is a troubleshooting distractor describing a learner mistake to correct, not an instructional use. |
 | VALID-04 | Facilitator simulation covers normal, resume, diagnostic, UI-drift, and adversarial behavior. | [Simulation scenarios](model-simulation-scenarios.md) | Inspect 12 complete scenarios and their authority traces/rubrics. | PASS | Six normal/resume and six diagnostic cases include exact evidence gates and static PASS audits without claiming remote execution. |
 
 ## Package artifacts and reference topics

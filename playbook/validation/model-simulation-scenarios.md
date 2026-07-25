@@ -895,3 +895,37 @@ present.
 | Child-appropriate tone without excessive praise or talking down | Every scenario's Tone criterion maps to `FC-08` | PASS |
 | Exact progress update or no-change rule | Every scenario's progress-related criterion maps to `FC-15` | PASS |
 | Cross-model neutrality stated without claiming remote execution | SIM-N04 and document preface | PASS |
+
+## Final completion audit (2026-07-26)
+
+Every scenario's authority trace was re-verified against the current playbook
+rather than re-asserted:
+
+- All `FC-01`–`FC-15` citations across the 12 scenarios were checked against
+  [FACILITATOR_CONTRACT.md](../FACILITATOR_CONTRACT.md#non-negotiable-execution-rules);
+  every cited rule number exists with the stated meaning (load order, entry
+  evidence, action-group size, response templates, evidence gates, tone,
+  canonical-value preservation, UI-drift handling, no project editing, no
+  false PASS, and session handoff).
+- All 12 `SYM-*` diagnostic citations (`SYM-NAME-01`, `SYM-PATH-01`,
+  `SYM-GD-01`, `SYM-SIGNAL-01`, `SYM-SHAPE-01`, `SYM-LAYER-01`,
+  `SYM-SCORE-01`, `SYM-MAP-01`, `SYM-RESET-01`, `SYM-ASSET-01`,
+  `SYM-AUDIO-01`, `SYM-EXPORT-01`) resolve to an existing branch in
+  [troubleshooting-map.md](../facilitator-solutions/troubleshooting-map.md).
+- The lesson anchors cited by each scenario (for example Lesson 04's
+  two-press gate, Lesson 08's sensor and crossing-print gates, Lesson 09's
+  four-case matrix, and Lesson 10's second-restart gate) were re-read and
+  match the scenario's described evidence, prohibited behavior, and expected
+  progress update.
+- Every scenario's "Static audit result: PASS" line was re-confirmed: no
+  scenario invents learner runtime evidence, no scenario has the facilitator
+  edit or generate the learner's project, and the adversarial `SIM-D02`
+  scenario correctly treats a pasted instruction-like comment as evidence,
+  not as a command.
+- `node --test playbook/validation/check_playbook.test.mjs` (18/18 PASS) and
+  `node playbook/validation/check_playbook.mjs playbook` (exit `0`) were
+  re-run as part of this same audit; see `requirements-checklist.md` for the
+  full evidence chain.
+- **Result: all 12 scenarios remain PASS on 2026-07-26.** No scenario
+  required a correction, and no defect in lesson, reference, or
+  facilitator-solution content was found that would require a FAIL row.

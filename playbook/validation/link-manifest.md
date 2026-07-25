@@ -1,6 +1,7 @@
 # Playbook Link Manifest
 
 Review date: **2026-07-25**
+Final completion audit re-review date: **2026-07-26**
 
 `STATIC PASS` for an external URL means its source, topic, and versioned path
 were inspected in the repository. It does not claim a live network request;
@@ -8,6 +9,41 @@ live availability is reserved for the final completion audit. `PASS` for an
 internal target means the file and anchor exist and were inspected. Godot
 documentation targets use `/en/4.7/`; the official 4.7.1 download archive is
 an allowed release/download page rather than a versioned documentation page.
+
+## Final completion audit (2026-07-26)
+
+Every unique URL and internal route below was re-inspected for this audit.
+Live network access was not available in this environment, so this pass
+repeats the static method: confirm the URL shape resolves to a real
+`docs.godotengine.org` or `godotengine.org` host, confirm the version segment
+is `/en/4.7/` (or the allowed 4.7.1 release/download page for `EXT-001`,
+never `/en/latest/`), and confirm the stated topic matches the link's purpose
+column and its source file/anchor's actual content.
+
+- All 21 external URLs (`EXT-001`–`EXT-021`) use the versioned `4.7` path or
+  the allowed 4.7.1 release/download page; none use `/en/latest/`. The
+  structural validator's own check (`rejects the latest Godot documentation
+  URL`, part of the 18/18 passing unit test suite) enforces this
+  automatically for every link the checker can reach.
+- Each external target's topic was re-compared against its source
+  file/anchor: for example `EXT-009` ("Using signals") is cited from
+  [signals.md](../references/signals.md), whose content is about the five
+  required signal connections, and `EXT-018` ("Exporting projects") is cited
+  from [exporting.md](../references/exporting.md), whose content is the
+  desktop export workflow. No topic mismatch was found.
+- All internal targets (`INT-*`, `NODE-*`, `PROP-*`, `SCRIPT-*`, `SYM-*`,
+  `REF-*`, `FINAL-*`) resolve to an existing file and heading; the structural
+  validator's link/anchor check and `node playbook/validation/check_playbook.mjs
+  playbook` (exit `0`) confirm this holds for the whole package.
+- No dead or scope-inappropriate link was found. No replacement was
+  necessary, so the validator was re-run only to confirm the unchanged
+  package (see Step 9 evidence in `requirements-checklist.md`).
+- **Live-fetch caveat:** this environment has no live web access, so
+  `STATIC PASS` results above and in this section describe static structural,
+  version, and topic review only. They do not confirm the pages are
+  currently reachable or unchanged on the live internet today.
+- **Result: STATIC PASS** for every external row; **PASS** for every internal
+  row, all re-confirmed on 2026-07-26.
 
 ## External URLs
 
