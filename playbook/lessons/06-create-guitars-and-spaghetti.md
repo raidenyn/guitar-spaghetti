@@ -205,7 +205,7 @@ copy its first line and line number; if no, state that there is no red error.
 indent only that line, leaving start_falling() directly below it, then repeat
 this gate.
 
-##### Action group L06.S02.G03 — Add the setup recipe
+##### Action group L06.S02.G03 — Save the new Kind
 
 Below the complete _ready() function, add this one code group exactly:
 
@@ -213,22 +213,41 @@ Below the complete _ready() function, add this one code group exactly:
 
 func setup(new_kind: Kind) -> void:
     kind = new_kind
+~~~
+
+Save and check for the first red error.
+
+**Observable gate — L06.S02.G03 save Kind:** Is there a red error? If yes,
+copy its first line and line number; if no, state that there is no red error.
+
+**PASS:** The learner observes no red error; continue to L06.S02.G04.
+**RETRY:** Request the first red line or an explicit no-red-error observation.
+**DIAGNOSE:** Compare only the function header and the indented
+kind = new_kind line with SCRIPT-L06. The assignment has four spaces. Correct
+only the differing line, then repeat this gate.
+
+##### Action group L06.S02.G04 — Apply the new look when ready
+
+Inside the setup(new_kind: Kind) function, directly below the anchor
+kind = new_kind, add this one code group exactly:
+
+~~~gdscript
     if is_node_ready():
         _apply_placeholder()
 ~~~
 
 Save and check for the first red error.
 
-**Observable gate — L06.S02.G03 setup recipe:** Is there a red error? If yes,
+**Observable gate — L06.S02.G04 ready guard:** Is there a red error? If yes,
 copy its first line and line number; if no, state that there is no red error.
 
-**PASS:** The learner observes no red error; continue to L06.S02.G04.
+**PASS:** The learner observes no red error; continue to L06.S02.G05.
 **RETRY:** Request the first red line or an explicit no-red-error observation.
 **DIAGNOSE:** If the error mentions indentation, compare the if line and the
 line beneath it only. The kind = new_kind line has four spaces and the
 _apply_placeholder() line has eight. Then repeat this gate.
 
-##### Action group L06.S02.G04 — Turn Kind into a color and word
+##### Action group L06.S02.G05 — Turn Kind into a color and word
 
 Below the complete _process(delta: float) function, add this one code group
 exactly:
@@ -242,7 +261,7 @@ func _apply_placeholder() -> void:
 
 Save and check for the first red error.
 
-**Observable gate — L06.S02.G04 visual recipe:** Is there a red error? If yes,
+**Observable gate — L06.S02.G05 visual recipe:** Is there a red error? If yes,
 copy its first line and line number; if no, state that there is no red error.
 
 **PASS:** The learner observes no red error; continue to L06.S03.
@@ -506,14 +525,22 @@ observed tree, Inspector value, script-error, or run result. If it has passed,
 record L06_COMPLETE, set next_action to Begin L07.S01, and use this handoff
 format:
 
-~~~text
-SESSION_HANDOFF
-checkpoint: L06_COMPLETE
-next_action: Begin L07.S01
-observed: FallingThing Kind showed GUITAR blue #3b82f6 and SPAGHETTI red #ef4444
-observed: temporary Main instance restored to GUITAR at (240, -40)
-experiment_to_revert: none
-~~~
+```SESSION_HANDOFF
+playbook_version: "1.0"
+godot_version: "4.7.1"
+development_os: "[macOS, Windows, or Linux observed]"
+current_lesson: "07"
+current_step: "L07.S01"
+last_exit_checkpoint: "L06_COMPLETE"
+completed_checkpoints: ["L01_COMPLETE", "L02_COMPLETE", "L03_COMPLETE", "L04_COMPLETE", "L05_COMPLETE", "L06_COMPLETE"]
+verified_node_tree: "Main (Node2D) has exactly one temporary FallingThing instance at (240, -40); FallingThing (Area2D) has Placeholder, TypeLabel, Sprite2D, and CollisionShape2D."
+verified_runtime_behavior: "The temporary instance showed GUITAR with blue #3b82f6 and SPAGHETTI with red #ef4444 in separate runs, then was restored to GUITAR; Output had no red error."
+known_project_files: ["res://scenes/main.tscn", "res://scenes/falling_thing.tscn", "res://scripts/match_line.gd", "res://scripts/falling_thing.gd"]
+approved_deviations: []
+unresolved_error: "[none]"
+experiment_to_revert: "[none]"
+next_action: "Begin L07.S01"
+```
 
 Do not claim either visual mapping, the restored Kind, or the complete script
 comparison unless the learner supplied that evidence.
