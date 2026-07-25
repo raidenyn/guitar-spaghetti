@@ -137,31 +137,22 @@ node name. **DIAGNOSE:** If the script is on `Visual` or another node, detach
 only that attachment and attach the saved script to `MatchLine`, then repeat
 this gate.
 
-##### Action group L04.S02.G02 — Add the script's top section
+##### Action group L04.S02.G02 — Start the script
 
-Replace the generated script text with this top section. It belongs at the
-very top of `res://scripts/match_line.gd`:
+Replace the generated script text with this first small addition. It belongs at
+the very top of `res://scripts/match_line.gd`:
 
 ```gdscript
 class_name MatchLine
 extends Area2D
-
-enum LineColor { BLUE, RED }
-
-const BLUE_COLOR := Color("#2684ff")
-const RED_COLOR := Color("#ef4444")
-
-var current_color: LineColor = LineColor.BLUE
-var input_enabled := true
-
-@onready var visual: ColorRect = $Visual
 ```
 
 Save. Before running, check the script editor and Output for the first red
 error.
 
-**Observable gate — `L04.S02.G02 script top`:** Is there a red error? If yes,
-copy its first line and line number; if no, state that there is no red error.
+**Observable gate — `L04.S02.G02 script start`:** Is there a red error? If
+yes, copy its first line and line number; if no, state that there is no red
+error.
 
 **PASS:** The learner observes no red error; continue to `L04.S02.G03`.
 **RETRY:** Ask for the first red line or an explicit no-red-error observation.
@@ -170,18 +161,91 @@ group, then use
 [`SYM-GD-01`](../facilitator-solutions/troubleshooting-map.md#sym-gd-01-first-parse-or-indentation-error)
 and repeat this gate.
 
-##### Action group L04.S02.G03 — Add the ready recipe
+##### Action group L04.S02.G03 — Add the color names
+
+Below `extends Area2D`, add this short code addition:
+
+```gdscript
+
+enum LineColor { BLUE, RED }
+
+const BLUE_COLOR := Color("#2684ff")
+const RED_COLOR := Color("#ef4444")
+```
+
+Save. Before running, check the script editor and Output for the first red
+error.
+
+**Observable gate — `L04.S02.G03 color names`:** Is there a red error? If yes,
+copy its first line and line number; if no, state that there is no red error.
+
+**PASS:** The learner observes no red error; continue to `L04.S02.G04`.
+**RETRY:** Ask for the first red line or an explicit no-red-error observation.
+**DIAGNOSE:** Compare only the reported line and the line above it with this
+group, then use
+[`SYM-GD-01`](../facilitator-solutions/troubleshooting-map.md#sym-gd-01-first-parse-or-indentation-error)
+and repeat this gate.
+
+##### Action group L04.S02.G04 — Add the line's starting state
+
+Below the color constants, add this short code addition:
+
+```gdscript
+
+var current_color: LineColor = LineColor.BLUE
+var input_enabled := true
+```
+
+Save. Before running, check the script editor and Output for the first red
+error.
+
+**Observable gate — `L04.S02.G04 starting state`:** Is there a red error? If
+yes, copy its first line and line number; if no, state that there is no red
+error.
+
+**PASS:** The learner observes no red error; continue to `L04.S02.G05`.
+**RETRY:** Ask for the first red line or an explicit no-red-error observation.
+**DIAGNOSE:** Compare only the reported line and the line above it with this
+group, then use
+[`SYM-GD-01`](../facilitator-solutions/troubleshooting-map.md#sym-gd-01-first-parse-or-indentation-error)
+and repeat this gate.
+
+##### Action group L04.S02.G05 — Find the visual child
+
+Below the starting-state variables, add this one-line code addition:
+
+```gdscript
+
+@onready var visual: ColorRect = $Visual
+```
+
+Save. Before running, check the script editor and Output for the first red
+error.
+
+**Observable gate — `L04.S02.G05 visual child`:** Is there a red error? If
+yes, copy its first line and line number; if no, state that there is no red
+error.
+
+**PASS:** The learner observes no red error; continue to `L04.S02.G06`.
+**RETRY:** Ask for the first red line or an explicit no-red-error observation.
+**DIAGNOSE:** Compare only the reported line and the line above it with this
+group, then use
+[`SYM-GD-01`](../facilitator-solutions/troubleshooting-map.md#sym-gd-01-first-parse-or-indentation-error)
+and repeat this gate.
+
+##### Action group L04.S02.G06 — Add the ready recipe
 
 Below the `@onready` line, add this one short code addition:
 
 ```gdscript
+
 func _ready() -> void:
     reset_to_blue()
 ```
 
 Save. Before running, check the first red error again.
 
-**Observable gate — `L04.S02.G03 ready code`:** What is the first red error,
+**Observable gate — `L04.S02.G06 ready code`:** What is the first red error,
 or does the script show no red error?
 
 **PASS:** The learner observes no red error; continue to `L04.S03`.
@@ -233,6 +297,7 @@ can be tested before later lessons introduce game states.
 Below `_ready()`, add this function:
 
 ```gdscript
+
 func _unhandled_input(event: InputEvent) -> void:
     if input_enabled and event.is_action_pressed("switch_line"):
         current_color = (
@@ -254,17 +319,52 @@ or does the script show no red error?
 observation. **DIAGNOSE:** Correct only the reported spelling, punctuation, or
 indentation difference, then repeat this gate.
 
-##### Action group L04.S03.G02 — Add the reset, enable, and color recipes
+##### Action group L04.S03.G02 — Add the reset recipe
 
 Below `_unhandled_input`, add this one short code addition:
 
 ```gdscript
+
 func reset_to_blue() -> void:
     current_color = LineColor.BLUE
     _apply_color()
+```
+
+Save, then check the first red error before running.
+
+**Observable gate — `L04.S03.G02 reset recipe`:** What is the first red error,
+or does the script show no red error?
+
+**PASS:** The learner observes no red error; continue to `L04.S03.G03`.
+**RETRY:** Request the exact first red line or an explicit no-red-error
+observation. **DIAGNOSE:** Correct only the reported line, save, and repeat
+this same gate.
+
+##### Action group L04.S03.G03 — Add the input-enablement recipe
+
+Below `reset_to_blue()`, add this one short code addition:
+
+```gdscript
 
 func set_input_enabled(value: bool) -> void:
     input_enabled = value
+```
+
+Save, then check the first red error before running.
+
+**Observable gate — `L04.S03.G03 input enablement`:** What is the first red
+error, or does the script show no red error?
+
+**PASS:** The learner observes no red error; continue to `L04.S03.G04`.
+**RETRY:** Request the exact first red line or an explicit no-red-error
+observation. **DIAGNOSE:** Correct only the reported line, save, and repeat
+this same gate.
+
+##### Action group L04.S03.G04 — Add the color recipe
+
+Below `set_input_enabled()`, add this one short code addition:
+
+```gdscript
 
 func _apply_color() -> void:
     visual.color = BLUE_COLOR if current_color == LineColor.BLUE else RED_COLOR
@@ -273,15 +373,15 @@ func _apply_color() -> void:
 Save, then check the first red error before running. If there is no red error,
 run the project.
 
-**Observable gate — `L04.S03.G02 completed script`:** What is the first red
+**Observable gate — `L04.S03.G04 completed script`:** What is the first red
 error, or does the project start with no red Output error?
 
 **PASS:** The learner observes a running project with no red Output error;
-continue to `L04.S03.G03`. **RETRY:** Request the exact first red line or an
+continue to `L04.S03.G05`. **RETRY:** Request the exact first red line or an
 explicit no-red-error run observation. **DIAGNOSE:** Correct only the reported
 line, save, and rerun this same gate.
 
-##### Action group L04.S03.G03 — Observe two separate presses
+##### Action group L04.S03.G05 — Observe two separate presses
 
 1. With the game window focused, observe that the line starts blue `#2684ff`.
 2. Press and release Space once; observe the line turn red `#ef4444`.
