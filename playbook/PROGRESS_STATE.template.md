@@ -36,6 +36,13 @@ next_action: "Begin L01.S01"
 - `experiment_to_revert`: optional experiment that must be restored before returning to the required path, or `[none]`.
 - `next_action`: the single action the facilitator may begin after acknowledging the loaded checkpoint.
 
+**Terminal exception:** When `last_exit_checkpoint` is `L13_COMPLETE`, use the
+exact literal values `current_lesson: "COMPLETE"`, `current_step: "COMPLETE"`,
+and `next_action: "No canonical action — playbook complete"`.
+This terminal handoff has no resume behavior: after acknowledging the completed
+checkpoint, the canonical playbook ends and the facilitator must not begin
+another lesson or step.
+
 ## SESSION_HANDOFF
 
 At a pause or lesson boundary, emit this exact fenced `SESSION_HANDOFF` block. Keep all fields even when a value remains unchecked. Only observed facts may be recorded.
@@ -57,4 +64,4 @@ experiment_to_revert: "[none]"
 next_action: "Begin L01.S01"
 ```
 
-Save the updated block as the current progress state or paste it into the next chat. A facilitator resumes by acknowledging `last_exit_checkpoint`, checking the current lesson's entry evidence, and beginning only `next_action`.
+Save the updated block as the current progress state or paste it into the next chat. A facilitator resumes a non-terminal handoff by acknowledging `last_exit_checkpoint`, checking the current lesson's entry evidence, and beginning only `next_action`. A terminal `L13_COMPLETE` handoff ends the canonical playbook and has no action to resume.

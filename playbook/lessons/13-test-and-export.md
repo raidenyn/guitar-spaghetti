@@ -536,8 +536,8 @@ If it has passed, record L13_COMPLETE and use this handoff format:
 playbook_version: "1.0"
 godot_version: "4.7.1"
 development_os: "[macOS, Windows, or Linux observed]"
-current_lesson: "13"
-current_step: "[none — playbook complete]"
+current_lesson: "COMPLETE"
+current_step: "COMPLETE"
 last_exit_checkpoint: "L13_COMPLETE"
 completed_checkpoints: ["L01_COMPLETE", "L02_COMPLETE", "L03_COMPLETE", "L04_COMPLETE", "L05_COMPLETE", "L06_COMPLETE", "L07_COMPLETE", "L08_COMPLETE", "L09_COMPLETE", "L10_COMPLETE", "L11_COMPLETE", "L12_COMPLETE", "L13_COMPLETE"]
 verified_node_tree: "The saved Main and FallingThing trees match NODE-L13, final values match PROP-L13, and all five required signal connections are visible."
@@ -546,7 +546,7 @@ known_project_files: ["res://scenes/main.tscn", "res://scenes/falling_thing.tscn
 approved_deviations: []
 unresolved_error: "[none]"
 experiment_to_revert: "[none]"
-next_action: "Playbook complete — begin an optional new project only"
+next_action: "No canonical action — playbook complete"
 ```
 
 Do not claim final completion without learner's own editor and exported
