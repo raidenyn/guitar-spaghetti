@@ -180,7 +180,9 @@ function markdownTextWithoutCode(content) {
   for (const line of content.split(/\r?\n/)) {
     const fence = /^[ \t]{0,3}(`{3,}|~{3,})/.exec(line)?.[1];
     if (fenceDelimiter) {
-      if (fence && fence[0] === fenceDelimiter[0] && fence.length >= fenceDelimiter.length) {
+      const closingFence = /^[ \t]{0,3}(`{3,}|~{3,})[ \t]*$/.exec(line)?.[1];
+      if (closingFence && closingFence[0] === fenceDelimiter[0]
+        && closingFence.length >= fenceDelimiter.length) {
         fenceDelimiter = "";
       }
       continue;

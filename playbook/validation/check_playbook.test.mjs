@@ -184,6 +184,66 @@ test("ignores a link-shaped fenced-code example", async (t) => {
   assert.deepEqual(await validatePlaybook(root), []);
 });
 
+test("keeps code examples after a fence-like line with trailing text ignored", async (t) => {
+  const root = await makeFixture(t);
+  await writeFixtureFile(root, "references/editor-map.md", [
+    "## Editor map",
+    "",
+    "```markdown",
+    "```not-a-close",
+    "[sample](missing.md)",
+    "```",
+    "",
+  ].join("\n"));
+  assert.deepEqual(await validatePlaybook(root), []);
+});
+
+test("recognizes a closing fence longer than its opening fence", async (t) => {
+  const root = await makeFixture(t);
+  await writeFixtureFile(root, "references/editor-map.md", [
+    "## Editor map",
+    "",
+    "```markdown",
+    "[code sample](ignored.md)",
+    "````",
+    "[outside link](missing.md)",
+    "",
+  ].join("\n"));
+  assert.deepEqual(await validatePlaybook(root), [{
+    code: "BROKEN_LINK",
+    path: "references/editor-map.md",
+    message: "Link target does not exist: missing.md",
+  }]);
+});
+
+test("does not close a fenced block with a shorter fence", async (t) => {
+  const root = await makeFixture(t);
+  await writeFixtureFile(root, "references/editor-map.md", [
+    "## Editor map",
+    "",
+    "````markdown",
+    "[first code sample](ignored.md)",
+    "```",
+    "[second code sample](also-ignored.md)",
+    "````",
+    "",
+  ].join("\n"));
+  assert.deepEqual(await validatePlaybook(root), []);
+});
+
+test("preserves tilde fenced-code support", async (t) => {
+  const root = await makeFixture(t);
+  await writeFixtureFile(root, "references/editor-map.md", [
+    "## Editor map",
+    "",
+    "~~~markdown",
+    "[sample](missing.md)",
+    "~~~",
+    "",
+  ].join("\n"));
+  assert.deepEqual(await validatePlaybook(root), []);
+});
+
 test("rejects an unfinished marker", async (t) => {
   const root = await makeFixture(t);
   const marker = "T" + "BD";
