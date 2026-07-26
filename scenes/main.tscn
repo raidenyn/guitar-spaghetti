@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://bfu4vtdts3r8o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7f5ia"]
+size = Vector2(480, 12)
+
+[node name="Main" type="Node2D" unique_id=2051344535]
+
+[node name="Background" type="ColorRect" parent="." unique_id=674867568]
+offset_right = 480.0
+offset_bottom = 720.0
+mouse_filter = 2
+color = Color(0.06666667, 0.09411765, 0.15294118, 1)
+
+[node name="MatchLine" type="Area2D" parent="." unique_id=1847818936]
+position = Vector2(0, 640)
+
+[node name="Visual" type="ColorRect" parent="MatchLine" unique_id=2123784349]
+offset_top = -6.0
+offset_right = 480.0
+offset_bottom = 6.0
+color = Color(0.14901961, 0.5176471, 1, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MatchLine" unique_id=1675512075]
+position = Vector2(240, 0)
+shape = SubResource("RectangleShape2D_7f5ia")
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=1402564954]
+
+[node name="ScoreLabel" type="Label" parent="HUD" unique_id=1107862800]
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 77.0
+offset_bottom = 39.0
+text = "Score: 0"
